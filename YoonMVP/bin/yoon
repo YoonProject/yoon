@@ -21,6 +21,6 @@ if (! $autoload) {
 
 require $autoload;
 
-$console = new \Pds\Skeleton\Console();
+$console = new \YoonMvp\Console();
 $executeState = $console->execute($argv);
 $executeState === true ? exit(0) : exit(1);

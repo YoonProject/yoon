@@ -1,9 +1,9 @@
 {
-    "name": "pds/skeleton",
+    "name": "YoonMvp",
     "type": "standard",
-    "description": "Standard for PHP package skeletons.",
-    "homepage": "https://github.com/php-pds/skeleton",
-    "license": "CC-BY-SA-4.0",
+    "description": "The yoon mvp project.",
+    "homepage": "https://yoon.online",
+    "license": "creative commons",
     "autoload": {
         "psr-4": {
             "Pds\\Skeleton\\": "src/"
@@ -14,5 +14,5 @@
             "Pds\\Skeleton\\": "tests/"
         }
     },
-    "bin": ["bin/pds-skeleton"]
+    "bin": ["bin/yoon"]
 }
