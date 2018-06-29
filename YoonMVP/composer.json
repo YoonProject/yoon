@@ -4,14 +4,28 @@
     "description": "The yoon mvp project.",
     "homepage": "https://yoon.online",
     "license": "creative commons",
+    "require": {
+        "rhumsaa/uuid": "@stable",
+        "psr/log": "@stable",
+        "byjg/micro-orm": "2.0.*",
+        "pleonasm/merkle-tree": "^1.0",
+        "php-di/php-di": "^6.0"
+    },
+    "require-dev": {
+        "phake/phake":"@stable",
+        "doctrine/common": ">=2.0,<2.5",
+        "symfony/framework-bundle": ">=2.0,<2.2",
+        "symfony/console": ">=2.0,<2.2",
+        "swiftmailer/swiftmailer": "4.*"
+    },
     "autoload": {
         "psr-4": {
-            "Pds\\Skeleton\\": "src/"
+            "Yoon\\YoonMvp\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Pds\\Skeleton\\": "tests/"
+            "Yoon\\YoonMvp\\": "tests/"
         }
     },
     "bin": ["bin/yoon"]
