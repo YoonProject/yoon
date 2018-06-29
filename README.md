@@ -1,116 +1,132 @@
-> **Technical Whitepaper**
+YOON TECHNICAL WHITEPAPER
 
-  Version 06-2018
-  ---------------------------------------
-  The global evidence protection system
-
-Content {#content .Inhaltsverzeichnisberschrift}
+Content {#content .ListParagraph .Inhaltsverzeichnisberschrift}
 =======
 
-[1 Introduction 4](#introduction)
+1.  Introduction
 
-[2 YOON Architecture (yArch) 5](#yoon-architecture-yarch)
+2.  YOON Architecture
 
-[2.1 CQRS 5](#cqrs)
+    1.  CQRS (Command-Query-Responsibility-Segregation)
 
-[2.2 Domain Driven Design 8](#domain-driven-design)
+    2.  Domain Driven design
 
-[2.2.1 What is Domain-Driven Design (DDD)?
-8](#what-is-domain-driven-design-ddd)
+    3.  Events and Event Sourcing
 
-[2.2.2 Why domain driven design? 8](#why-domain-driven-design)
+    4.  Process Manager (Saga)
 
-[2.3 Events and Event Sourcing 8](#events-and-event-sourcing)
+3.  YOON Protocol (yProtocol)
 
-[2.4 The process manager (Saga) 9](#the-process-manager-saga)
+    5.  Commands
 
-[2.5 The YOON Providers 10](#the-yoon-providers)
+    6.  Events
 
-[3 YOON Protocol (yProtocol) 11](#yoon-protocol-yprotocol)
+    7.  Message Broadcasting algorithm
 
-[3.2 Commands 12](#commands)
+4.  YOON API (yAPI)
 
-[3.3 Events 13](#events)
+    8.  OpenAPI
 
-[4 YOON API (yAPI) 14](#yoon-api-yapi)
+    9.  Identity Service
 
-[4.2 OpenAPI 14](#openapi)
+        1.  JWT (Bearer Access Token)
 
-[4.3 Identity Provider 15](#identity-provider)
+        2.  Developer API Key
 
-[4.3.2 Bearer access token (JWT) 16](#bearer-access-token-jwt)
+        3.  Security Schema
 
-[4.3.3 API Key 16](#api-key)
+    10. Command API
 
-[4.3.4 Security Schema 16](#security-schema)
+        4.  Command Request Schemas
 
-[4.4 Command API 18](#command-api)
+        5.  Command Paths
 
-[4.4.2 Command Request Schemas 18](#command-request-schemas)
+    11. Query API
 
-[4.4.3 Command Paths 20](#command-paths)
+        6.  Query Parameters
 
-[4.5 Query API 20](#query-api)
+        7.  Query Response Schemas
 
-[4.5.2 Query Response Schemas 20](#query-response-schemas)
+        8.  Query Paths
 
-[4.5.3 Query Paths 21](#query-paths)
+5.  YOON Engine (yEngine)
 
-[5 YOON Engine (yEngine) 22](#yoon-engine-yengine)
+    12. Core
 
-[5.2 Core 22](#core)
+        9.  Use Cases
 
-[5.2.2 Use Cases (examples) 22](#use-cases-examples)
+            1.  Uploading a file claiming ownership
 
-[5.2.3 Basic functionality 23](#basic-functionality)
+            2.  Uploading a contractual document with multi party
+                agreement
 
-[5.2.4 Extensibility 25](#extensibility)
+            3.  Submitting a review with B2C handshake
 
-[6 Yoon DataLayer (yData) 27](#yoon-datalayer-ydata)
+            4.  Election with automated transparency events
 
-[6.2 Data Providers 27](#data-providers)
+            5.  Uploading a testament with events on specific conditions
 
-[6.2.2 Blockchain Provider 27](#blockchain-provider)
+        10. Basic Functionality
 
-[6.2.3 SQL Provider 27](#sql-provider)
+            6.  YOON Accounts
 
-[6.2.4 File Storage Provider 27](#file-storage-provider)
+                1.  Charging
 
-[7 YOON Message Bus (yBus) 29](#yoon-message-bus-ybus)
+            7.  YOON Token Command Price Model
 
-[7.2 Everything is a message 29](#everything-is-a-message)
+            8.  Stellar Payments
 
-[7.3 Internal vs. external bus 29](#internal-vs.-external-bus)
+            9.  Stellar YOON Smart Contract
 
-[7.4 Queuing messages 29](#queuing-messages)
+            10. Stellar Payment Command
 
-[7.5 Message Broadcasting Algorithm 29](#message-broadcasting-algorithm)
+            11. Stellar PaymentReceived Event
 
-[7.6 Message Bus Plugins 32](#message-bus-plugins)
+        11. Extensibility
 
-[8 YOON Blockchain (yChain) 33](#yoon-blockchain-ychain)
+6.  YOON DataLayer (yData)
 
-[8.2 Digital Signatures 35](#digital-signatures)
+    13. Providers
 
-[8.3 Esoteric of Merkle Trees 37](#esoteric-of-merkle-trees)
+        12. Blockchain
 
-[8.4 Economic verification algorithm or „Proof of the tasty Steak "
-41](#economic-verification-algorithm-or-proof-of-the-tasty-steak)
+        13. SQL
 
-[8.5 Decentralized File Storage and Anchoring
-41](#decentralized-file-storage-and-anchoring)
+        14. Storage
 
-[8.5 Introducing the YOON peer to peer (in short p2p) model
-43](#introducing-the-yoon-peer-to-peer-in-short-p2p-model)
+            12. JSON Storage (OpenAPI Specifications)
 
-[9. YOON Streaming Services (ySS) 45](#yoon-streaming-services-yss)
+            13. Decentralized File Storage
 
-[9.1 The Streaming Server 45](#the-streaming-server)
+7.  YOON Message Bus (yBus)
 
-[9.2 Authentication Flow 45](#authentication-flow)
+    14. Everything is a Message
 
-[9.3 Streaming Command and Streaming Via WebSocket
-46](#streaming-command-and-streaming-via-websocket)
+    15. Internal vs. external Bus
+
+    16. Queuing messages
+
+    17. Message Broadcasting Algorithm
+
+    18. Message Bus Plugin Development
+
+        15. The Yoon Blockchain
+
+        16. Definitions
+
+        17. Yoon Pathfinder Algorithm
+
+        18. Proof of stake consensus algorithm with reward mechanism
+
+8.  YOON Streaming Services (YSS)
+
+    19. The Streaming Server
+
+    20. Authentication Flow
+
+    21. Stream Command
+
+    22. Streaming via WebSockets
 
 Introduction
 ============
@@ -138,11 +154,11 @@ product focused architectures at low cost on scalability and
 maintainability. We choose a blockchain agnostic approach due to the
 fast-evolving nature of blockchain technologies.
 
-2.  YOON Architecture (yArch)
-    =========================
+YOON Architecture
+=================
 
-    1.  CQRS
-        ----
+CQRS
+----
 
 The base architecture of our systems will be the CQRS --
 "Command-Query-Responsibility-Segregation" Pattern.
@@ -200,13 +216,13 @@ general overview to our CQRS-based application components.
 -   YOON Data Layer: The main data management allowing several
     decentralized and centralized database and storage technologies.
 
-![](media/image1.jpeg){width="6.263888888888889in"
-height="7.416666666666667in"}
+![](media/image1.jpeg){width="6.260416666666667in"
+height="7.4222222222222225in"}
 
 Domain Driven Design
 --------------------
 
-### 2.2.1 What is Domain-Driven Design (DDD)? {#what-is-domain-driven-design-ddd .ListParagraph}
+### What is Domain-Driven Design (DDD)?
 
 "Domain-driven design is the expansion upon and application of
 the domain concept, as it applies to the development of software. It
@@ -220,10 +236,10 @@ to business needs making it transparent implementing business driven
 domain models and domains using aggregates for state transitions and
 entities for reading out states independently which database/data
 storage technology we may use in the future or have been using in the
-past; meaning they are meant to be interchangeable, forwards and
-backwards compatible. An aggregate represents a bounded context which
-will handle a specific use case and its state transition as well
-spawning business events for further processing.
+past; they are meant to be interchangeable, forwards and backwards
+compatible. An aggregate represents a bounded context which will handle
+a specific use case and its state transition as well spawning business
+events for further processing.
 
 Events and Event Sourcing 
 --------------------------
@@ -258,10 +274,10 @@ arrows represents commands/write actions and the green events/read
 actions. This image demonstrates the use case of ordering seats e.g. for
 an airplane.
 
-![](media/image2.jpeg){width="6.256944444444445in"
-height="4.423611111111111in"}
+![](media/image2.jpeg){width="6.254166666666666in"
+height="4.427777777777778in"}
 
-According to this example we must pass through the following steps:
+According to this example we have to pass through the following steps:
 
 1.  Place an order (more abstract making a request, therefore sending a
     command)
@@ -322,8 +338,8 @@ YOON Protocol (yProtocol)
 
 The YOON Protocol will be the key part of all our systems defining our
 business actions as **messages**, **commands** and **events**.
-![](media/image3.jpeg){width="5.291666666666667in"
-height="2.3333333333333335in"}
+![](media/image3.png){width="2.2083333333333335in"
+height="1.8152777777777778in"}
 
 As you can see in the diagram above all our **commands** and **events**
 are **messages**. In terms of information systems, a message is a
@@ -354,8 +370,8 @@ picture with ownership". More precisely there exist 2 commands and 2
 events one for upload and one for the ownership, which has to be handled
 in a special way. More on this circumstance later in this document.
 
-![](media/image4.png){width="6.263888888888889in"
-height="3.4791666666666665in"}
+![](media/image4.gif){width="6.260416666666667in"
+height="3.479861111111111in"}
 
 The diagram above illustrates the usage of messages within our message
 bus system. Our message bus systems will span across many layers whereas
@@ -466,8 +482,8 @@ encryption standards. We encourage our partners to use our public
 templates to secure their evidence-based transactions over RESTful
 services.
 
-![](media/image5.jpeg){width="6.263888888888889in"
-height="5.472222222222222in"}
+![](media/image5.jpeg){width="6.2659722222222225in"
+height="5.4743055555555555in"}
 
 In the diagram above you see a typical communication handshake for
 authorizing via our identity service for later accessing the YOON API.
@@ -507,8 +523,9 @@ in: header
 
 Quite simple, isn't it? That's why we use the OpenAPI. We therefore
 defined our API Security with the API Key Method and Bearer Access token
-method.[^2] Now we define the bearer access token authentication and
-OAUTH2.0:
+method.[^2]
+
+Now we define the bearer access token authentication and OAUTH2.0:
 
 components:
 
@@ -727,8 +744,8 @@ description: "The events metadata information. Which user? Which file?"
 
 ...
 
- YOON Engine (yEngine)
-======================
+YOON Engine (yEngine)
+=====================
 
 The YOON Engine will be the central part of our business logic. As
 modularized engine with subscribing on commands and events, outlined
@@ -843,7 +860,7 @@ Account and thus fully convertible in both directions. The Stellar
 Account in its simplest form is a wallet, from which you can send and
 receive YOON Token.
 
-#### Charging and payment methods
+##### Charging and payment methods
 
 As mentioned above YOON accounts are being charged through our charging
 mechanisms. We will implement also a mechanism that allows to charge
@@ -867,9 +884,8 @@ our credits allowing to charge little or no fees for single operations
 up to larger fees for chained, more complex operations. For basic
 operations like the commands mentioned in the chapter above we charge
 almost no fees. Almost means that the fees charged will generate no
-real-world costs but need a minimum number of parts of YOON Ticks
-(inspired by and analogous to processor ticks) with a scaling factor to
-be executed. In practice it is a freemium model to execute the basic
+real-world costs but need a minimum number of parts of YOON Cent to be
+executed. In practice it is a freemium model to execute the basic
 commands like "Verify" or "Upload (for small sized files)".
 
 #### Stellar Payment
@@ -916,8 +932,8 @@ will provide a way to extend the YOON Engine with additional plugins.
 Our developers can easily add new functionalities for newly designed use
 cases or new currencies that we want to accept.
 
-![](media/image6.jpeg){width="6.263888888888889in"
-height="5.013888888888889in"}
+![](media/image6.jpeg){width="6.2659722222222225in"
+height="5.011805555555555in"}
 
 We use dependency injection mechanisms to extend our core engine with
 additional modules, so it will be possible to attach or detach
@@ -1138,11 +1154,11 @@ plugin, which is listening on the messages according to the storage
 relevant commands like file anchoring or signing concrete transactions
 which will then facilitate our own blockchain.
 
-YOON Blockchain (yChain)
-========================
+YOON Blockchain
+===============
 
-![](media/image7.jpeg){width="3.2708333333333335in"
-height="4.222222222222222in"}
+![](media/image7.jpeg){width="3.2670614610673665in"
+height="4.2186286089238845in"}
 
 Like many other blockchain technologies we consider modelling our
 structure of our hash signing with the help of the well-known [Merkle
@@ -1186,18 +1202,17 @@ technology.
 1976 the Lamport Diffie [^13] one-time signature method was founded,
 which use a one-time hash function
 
-![](media/image8.png){width="1.8443044619422573in"
+![](media/image8.png){width="1.84375in"
 height="0.20833333333333334in"}[^14]
 
 to generate a public key out of a private key. It has the form
 
-![](media/image9.png){width="4.826388888888889in"
-height="0.2986111111111111in"}
+![](media/image10.png){width="4.822916666666667in"
+height="0.3020833333333333in"}
 
 for the normal distributed private key string and
 
-![](media/image10.png){width="4.993055555555555in"
-height="0.5902777777777778in"}
+![](media/image12.png){width="4.989583333333333in" height="0.59375in"}
 
 for the encrypted public key string.
 
@@ -1229,29 +1244,30 @@ message and can proof the signature by applying her public key with the
 signed message and can forge the message by
 $\text{Hi}\left( \text{si} \right)$ = {01001101} with EVEN/ODD index
 {1100} and so receives {1010}, and {1010\] XOR 1 is {0101}. Eureka!
+
 There exist many improvements to this methodology like for example the
 Winternitz improvement[^15], but they all have in common one major
-problem as you already can guess, the **length** (in size of data) of
-the private key. Considering the length of the example above much
-longer, then all verifiers of this public key which results in an
-immerse overhead of computation and space requirement when you see it as
+problem as you already can guess, the **length** (in data) of the
+private key. Considering the length of the example above much longer,
+then all verifiers of this public key which results in an immerse
+overhead of computation and space requirement when you see it as
 distributed system where one actor waits until the other has finished
 verifying. As described earlier we will use the blake2 hash function for
-signature generation. [^16]
+signature generation.
 
 Esoteric of Merkle Trees
 ------------------------
 
 As you may already guess there exists a solution to this problem,
-founded by Ralph Merkle[^17], which is and was indeed a revolutionary
+founded by Ralph Merkle[^16], which is and was indeed a revolutionary
 idea but nothing new, since it is already popular in use within the
 Bitcoin blockchain. In the context of blockchain technology an also
 revolutionary idea firstly used to describe a rich state by Vitali
-Butkerin[^18] the **Merkle Tree** is seen in a new light from this time.
+Butkerin[^17] the **Merkle Tree** is seen in a new light from this time.
 Let's take a closer look to a simple Merkle (binary) Tree.
 
-![](media/image11.jpeg){width="5.548611111111111in"
-height="5.298611111111111in"}
+![](media/image14.jpeg){width="5.729166666666667in"
+height="3.2222222222222223in"}
 
 The principle is like the signature generation described on the previous
 page with one major advantage: One could verify more than one public key
@@ -1280,8 +1296,8 @@ output or let's say **traversal** and **verification**. We only describe
 key generation and traversal, since the verification is just the
 application of the formula mentioned above.
 
-Since it is a binary tree the fractal subtree height computes
-logarithmic with the formula
+Since it is a binary tree the subtree high computes logarithmic with the
+formula
 
 $h = \text{ld}($n + 1) where n is the total number of leaves and nodes.
 So, for instance our Merkle Tree example above has a height of
@@ -1296,7 +1312,7 @@ applied:
 
 +-----------------------------------+-----------------------------------+
 | > **1 **                          | > **Initial Subtrees:** For each  |
-|                                   | > *i* ^∈^ {1, 2, \..., *L*}:      |
+|                                   | > *i* ^∈^ {1, 2,\...,*L*}:        |
 |                                   |                                   |
 |                                   | -   Calculate all non -- root     |
 |                                   |     > nodes n in existing subtree |
@@ -1318,9 +1334,7 @@ applied:
 
 Where L is the logarithmic count of the subtree levels.
 
-For traversal of the fractal tree following algorithm gets applied,
-where Desire is a desired fractal tree and Exist is an existing fractal
-tree:
+For traversal of the fractal tree following algorithm gets applied:
 
 **Fractal Merkle Tree Traversal**
 
@@ -1344,9 +1358,9 @@ tree:
 |                                   | -   Rename tree Desire*~i~* as    |
 |                                   |     tree Exist*~i.~*              |
 |                                   |                                   |
-|                                   | -   Create a new, empty tree      |
+|                                   | -   Create new, empty tree        |
 |                                   |     *Desire~i~* (if *leaf* +      |
-|                                   |     2*^hi^* \< 2*^H^*).           |
+|                                   |     2*^hi^* - 2*^H^* ).           |
 +-----------------------------------+-----------------------------------+
 | **4 **                            | **Grow Subtrees:** For each       |
 |                                   | ^*I*\ ∈^ {1, 2, \..., *^L^*−^1^}: |
@@ -1388,7 +1402,7 @@ With the TREEHASH algorithm
 |                                   |     > = $\text{hmax}$ -- 1,       |
 |                                   |     > output                      |
 |                                   |     > $H\left( child2 \right)\tex |
-|                                   | t{\ and\ H}\left( child1 \right)$ |
+|                                   | t{\ and\ }H\left( child1 \right)$ |
 |                                   |     > and **terminate**.          |
 |                                   |                                   |
 |                                   | -   Compute new                   |
@@ -1418,8 +1432,8 @@ With the TREEHASH algorithm
 |                                   |     > $H\left( \text{leafindex} \ |
 |                                   | right)$.                          |
 |                                   |                                   |
-|                                   | -   Push $H(leafindex)$ onto the  |
-|                                   |     > stack.                      |
+|                                   | -   Push $H(leaf\text{index})$    |
+|                                   |     > onto the stack.             |
 |                                   |                                   |
 |                                   | -   Increment *leaf*.             |
 +-----------------------------------+-----------------------------------+
@@ -1427,46 +1441,113 @@ With the TREEHASH algorithm
 |                                   | > Desire**: continue:             |
 |                                   |                                   |
 |                                   | -   For each node value in stack  |
-|                                   |     $H\left( j \right)\ from\ j < |
-|                                   |  \ i*hmax$,\                      |
+|                                   |     $H\left( j \right)\text{\ fro |
+|                                   | m\ }j < \ i*hmax$,\               |
 |                                   |     push {stack\[s+               |
 |                                   |     i-2\],stack\[s+i-1\].stack\[s |
 |                                   | +i\]}                             |
 |                                   |     in Desire\[s\]\[i\].          |
 |                                   |                                   |
-|                                   | -   Loop to step 2. [^20]         |
+|                                   | -   Loop to step 2. [^19]         |
 +-----------------------------------+-----------------------------------+
 
 Remember this is also a one-way hash function? Alice claims the
 ownership of h (2) with her public key thus sending Bob h (4) only her
 minimum authentication path with different variants of the Merkle Tree
 structure and says Bob after generation: Look at {h (1) and h (h (3) + h
-(4))}. Since Bob is aware of his own and his parent and his neighbor, he
-would concatenate his h (h (3) + h (4)) result with given h (h (1) + h
-(2)) and check if it matches the root value.
+(4))}. Since Bob is
+
+With the TREEHASH algorithm
+
+**TREEHASH (s, hmax, i, Desire\[\]) **
+
++-----------------------------------+-----------------------------------+
+| > **1 **                          | > Set *leaf* = *s* and create     |
+|                                   | > empty stack.                    |
++===================================+===================================+
+| > **2 **                          | > **Consolidate:** If top 2 nodes |
+|                                   | > on the stack are equal height:  |
+|                                   |                                   |
+|                                   | -   Pop node value                |
+|                                   |     > $\ H\left( ch\text{ild}2 \r |
+|                                   | ight)$                            |
+|                                   |     > from stack.                 |
+|                                   |                                   |
+|                                   | -   Pop node value                |
+|                                   |     > $\ H\left( ch\text{ild}1 \r |
+|                                   | ight)$                            |
+|                                   |     > from stack.                 |
+|                                   |                                   |
+|                                   | -   If height                     |
+|                                   |     > $h\left( \text{parent} \rig |
+|                                   | ht)$                              |
+|                                   |     > = $h\max$ -1, Compute new   |
+|                                   |     > $H\left( \text{parent} \rig |
+|                                   | ht)$=$H(H\left( ch\text{ild}1 \ri |
+|                                   | ght),\ H\left( ch\text{ild}2 \rig |
+|                                   | ht))$,                            |
+|                                   |     > then output                 |
+|                                   |     > $H\left( \text{parent} \rig |
+|                                   | ht)$,                             |
+|                                   |     > else **terminate**.         |
+|                                   |                                   |
+|                                   | -   Push                          |
+|                                   |     > $H\left( \text{parent} \rig |
+|                                   | ht)$                              |
+|                                   |     > in to the stack and stop.   |
++-----------------------------------+-----------------------------------+
+| > **3 **                          | > **New Leaf:** Otherwise:        |
+|                                   |                                   |
+|                                   | -   Compute new leaf with hash    |
+|                                   |     > function                    |
+|                                   |     > $H\left( \text{leaf}\text{i |
+|                                   | ndex} \right)$.                   |
+|                                   |                                   |
+|                                   | -   Push                          |
+|                                   |     > $H(\text{leaf}\text{index}) |
+|                                   | $                                 |
+|                                   |     > onto the stack.             |
+|                                   |                                   |
+|                                   | -   Increment *leaf*.             |
++-----------------------------------+-----------------------------------+
+| > **4 **                          | > **Push relevant nodes**:        |
+|                                   | > continue:                       |
+|                                   |                                   |
+|                                   | -   $i*h\max$ then push           |
+|                                   |     > $H\left( \text{parent} \rig |
+|                                   | ht),\ H\left( ch\text{ild}1 \righ |
+|                                   | t),\ H\left( ch\text{ild}2 \right |
+|                                   | ),H\left( i \right)\ldots$        |
+|                                   |     > ) in *Desire~i~*.           |
+|                                   |                                   |
+|                                   | -   Loop to step 2. [^21]         |
++-----------------------------------+-----------------------------------+
+
+aware of his own and his parent and his neighbor, he would concatenate
+his h (h (3) + h (4)) result with given h (h (1) + h (2)) and check if
+it matches the root value.
 
 We at YOON want to generalize this pattern again and want to sign
-different blockchain bound **transactions**, **accounts**, **files** and
-so on in a single round trip with different kinds of Merkle Trees, one
-for each blockchain technology, like **Stellar**, **Ethereum**,
-**Bitcoin** etc.
+different blockchain bound transactions, accounts, files and so on in a
+single round trip with different kinds of Merkle Trees, one for each
+blockchain technology, like Stellar, Ethereum, Bitcoin etc.
 
 Economic verification algorithm or „Proof of the tasty Steak " 
 ---------------------------------------------------------------
 
-Like many other providers for our verification on top of the Merkle
-Signatures we consider implementing a Proof of Stake-like algorithm
-which should be suitable enough for our business needs. Since it is more
-an economy related conceptual algorithm (and is quite far too complex to
-explain it here within 3 sites), we won't go deeper in that here. Let's
-state that everyone participating at the YOON Blockchain will receive a
-first positive stake, so that the "there is nothing to stake" argument
-won't quite fit, but we will implement a malus for each malicious and/or
+Like many other providers for our verification of the Merkle Signatures
+we consider implementing a Proof of Stake-like algorithm which should be
+suitable enough for our business needs. Since it is more an economy
+related conceptual algorithm (and is quite far too complex to explain it
+here within 3 sites), we won't go deeper in that here. Let's state that
+everyone participating at the YOON Blockchain will receive a first
+positive stake, so that the "there is nothing to stake" argument won't
+quite fit, but we will implement a malus for each malicious and/or
 suspicious action (which later results in a malicious one) resulting in
 an event which leaves unvalidated/corrupt blocks of data once submitted
 to validate. So, we also talk about (signature) validators, not block
-miners. There exist also plenty of (economic) attack scenarios, like the
-51% attack, we will consider choosing one of the known algorithms.
+miners. There are also plenty of attack scenarios we will consider
+choosing one of the known algorithms.
 
 For more information see
 <https://blog.ethereum.org/2014/01/15/slasher-a-punitive-proof-of-stake-algorithm/>.
@@ -1512,138 +1593,24 @@ The bridge between our blockchain and underlying technology happens with
 their and our Merkle Root or let's say Merkle Root fragment.
 
 In the next step we want to build our own distributed file system with a
-classical peer-to-peer network approach allowing third party providers
-to host a peer node for distributing and signing files backed by our
-blockchain client. Like other blockchain based peer-to-peer networking
-models we want to apply a reward system for the participants getting
-them YOON Tokens for transmitting data fragments, signing file-based
-transactions and flagging suspicious actions on the network.
+more or less classical peer-to-peer network approach allowing third
+party providers to host a peer node for distributing and signing files
+backed by our blockchain client. Like other blockchain based
+peer-to-peer networking models we want to apply a reward system for the
+participants getting them YOON Tokens for transmitting data fragments,
+signing file-based transactions and flagging suspicious actions on the
+network.
 
- 8.5 Introducing the YOON peer to peer (in short p2p) model  {#introducing-the-yoon-peer-to-peer-in-short-p2p-model .ListParagraph}
-------------------------------------------------------------
+Introducing the YOON peer to peer model:
 
 The early ages of peer to peer networking are already known by a broad
 mass as the popular bit torrent clients which already have made use of
-distributed hash tables (in short DHT) [^21], for example eDonkey which
+distributed hash tables (in short DHT) [^22], for example eDonkey which
 represents one of these distributed file sharing systems. As a peer node
 you offered your computational power as well as your bandwidth for
-allowing others to share **hashed** file artifacts through your peer
-node and allows yourself to import seeds to download a specific file at
-whole (if you paid sufficient funds in YOON). Our peer-to-peer model
-will be a pure p2p model, in which we also serve with some strong nodes
-offering you the computational power for the daily use. As a contributor
-you can earn YOON Tokens as a reward for hosting a node. You will be
-paid for uptime as well as for your bandwidth throughput, proper
-consistency checks with Merkle Signatures for the corresponding
-artifacts (top root hash in the JSON-LD document) and name resolves for
-querying new nodes. For clarity consider following scenario. A YOON
-Account owner wants to upload a file, an image for instance, which has a
-size of 10 Mbytes. Now your image gets split into 10 even sized chunks
-(if it were 11 Mbytes big, there would be 11 chunks with the last one
-having 1Mb). First, a JSON-LD file gets generated with the following
-information:
-
-{
-
-> \"\@context\": \"{YoonP2PSchema}\",
->
-> \"\@id\": \"{ImageId}\",
->
-> \"name\": \"{ImageName}\",
->
-> \"type\": \"jpeg\",
->
-> \"size\": \"10Mb\",
->
-> \"Created\": \"{TodayDate}\",
->
-> \"YoonAccount\" : {PublicKey} (owner),
->
-> \"MerkleRoot\": \"{RootHash}\"
-
-}
-
-Additionally, the owner wants to claim the ownership according to our
-business use case No. 1 "Uploading a file claiming the ownership".
-First, a series of identifying immutable transactions will be generated
-in an inter-blockchain scenario. For the image fragments a Merkle
-signature with root hash will be generated and each chunk will be signed
-by the corresponding Merkle Tree leaf. Then the root hash becomes an
-anchor for the corresponding data like you have seen in the JSON-LD
-document.
-
-![](media/image12.jpeg){width="6.590277777777778in"
-height="2.673611111111111in"}
-
-In the next step the file chunks will be distributed with their
-corresponding Merkle Signatures and gets converted in a distributed hash
-table form, like {Key1, Data1}, {Key2, Data2}, {Key3, Data3} ... {Keyn,
-Datan}.
-
- 9 YOON Streaming Services (ySS) {#yoon-streaming-services-yss .ListParagraph}
-================================
-
-With the Yoon Streaming Services, we want to provider a way to open a
-stream from one of file providers mentioned above to stream large files
-over web-based technologies like state of the art browsers like Google
-Chrome on Windows as well as lightweight smart phone browser within iOS
-or Android operating systems.
-
-The Streaming Server
---------------------
-
-The core concept of our streaming will be a standalone streaming server
-which registers on our message bus systems. Once registered the server
-can listen to corresponding stream control commands as well to events
-signaling file-based operations on our blockchain bound file system
-abstractions.
-
-Authentication Flow
--------------------
-
-The authentication flow works transparently according to our OpenAPI
-standard mentioned above. Once authenticated a web client (single page
-application) or any other app can use our streaming API commands.
-
-Streaming Command and Streaming Via WebSocket
----------------------------------------------
-
-For streaming we will use WebSocket[^22] for the transport of our
-streaming data and the normal OpenAPI standard for abstracting
-(file)stream control commands. For a concrete implementation in PHP in
-the first version we consider using Ratched as library for the server
-part. [^23] The most WebSocket implementations naturally support
-messages, events and commands within their implementation as well as the
-most JavaScript SPA frameworks implement a publish subscriber pattern on
-top of a JavaScript web socket API.
-
-In the diagram underneath we will explain a sample scenario how we would
-implement a typical use of WebSocket for our streaming.
-
-![](media/image13.jpeg){width="5.229166666666667in"
-height="5.951388888888889in"}
-
-First, a single page application (authenticated), in this case our own
-YOON Box pushes a stream command and an authentication token to our API.
-For further processing the client opens a web socket to our web socket
-hub implementation with the API. In the next step our API internally
-generates a stream command for our streaming use case and generates a
-corresponding stream ID sending it to the client via web sockets. The
-API pushes the generates a stream command into to the message bus. The
-stream command gets received by our YOON Engine, which generates a
-corresponding saga to our business-related use case. If the saga
-succeeds, a stream event is generated and pushed to the message bus. The
-stream server listens on the stream event and once received it opens the
-stream by our file system abstracting data layer. The stream could come
-from everywhere, e.g. from Swarm, our P2P network or even amazon web
-services. The streaming server generates a push stream command and opens
-a WebSocket Hub exclusively for the client with a hash-based URL out of
-the client's token and the stream id and pushes the command to the
-message bus with the previously generated stream id and token. The
-WebSocket Hub within the API receives this command and informs the
-client the stream being ready. The client initiates a new WebSocket
-connection to the streaming server with the supplied stream id and the
-token.
+allowing others to share hashed file artifacts through your peer node
+and allowed yourself to import seeds to download a specific file at
+whole.
 
 References
 
@@ -1661,15 +1628,9 @@ References
 
 <https://airbrake.io/blog/software-design/domain-driven-design>
 
-Bachelor Thesis, Boris Ederov, Merkle Tree traversal techniques
+<https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
 
-<https://blake2.net/>
-
-<https://blog.ethereum.org>
-
-[Robter C. Martin, Clean Architecture]{.underline}
-
-<http://socketo.me/>
+[https://blake2.net/]{.underline}
 
 [^1]: Initially introduced and made popular by programmer Eric Evans in
     his 2004 book, *Domain-Driven Design: Tackling Complexity in the
@@ -1724,23 +1685,21 @@ Bachelor Thesis, Boris Ederov, Merkle Tree traversal techniques
 
 [^15]: <https://github.com/shelby3/winternitz/blob/master/Winternitz.md>
 
-[^16]: <https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
+[^16]: <https://de.wikipedia.org/wiki/Ralph_Merkle>
 
-[^17]: <https://de.wikipedia.org/wiki/Ralph_Merkle>
+[^17]: <https://en.wikipedia.org/wiki/Vitalik_Buterin>
 
-[^18]: <https://en.wikipedia.org/wiki/Vitalik_Buterin>
+[^18]: <https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
 
 [^19]: <https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
 
 [^20]: <https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
 
-[^21]: Distributed hash tables are hash tables like on a local node or
+[^21]: <https://www.cdc.informatik.tu-darmstadt.de/reports/reports/Boris_Ederov.bachelor.Merkle-Tree-Traversal-Techniques.pdf>
+
+[^22]: Distributed hash tables are hash tables like on a local node or
     network but distributed over one or more peers. A peer could
     therefore be a client, server or a service hosted by a cloud
     provider. Hash tables are data structures, which provider fast
     indexing and verification of data and can be linked by cascading
     hashes.
-
-[^22]: <https://tools.ietf.org/html/rfc6455>
-
-[^23]: <http://socketo.me/>
