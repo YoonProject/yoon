@@ -10,9 +10,15 @@ abstract class CqrsAggregate extends AggregateRoot
     /**
      * @var array<Event>
      */
-    private $messages = array();
+    private $events = array();
 
-    public function loadFromEventStream(EventStream $eventStream)
+    /**
+     * Loads all events from the specified event stream.
+     *
+     * @param EventStream $eventStream
+     * @return void
+     */
+    public function loadFromEventStream(EventStream $eventStream) : void
     {
         if ($this->events) {
             throw new RuntimeException("AggregateRoot was already created from event stream and cannot be hydrated again.");
@@ -23,7 +29,12 @@ abstract class CqrsAggregate extends AggregateRoot
         }
     }
 
-    public function pullEvents()
+    /**
+     * Pulls all stored outstanding events within the aggregate and clears them.
+     *
+     * @return void
+     */
+    public function popAllEvents() : array
     {
         $events = $this->events;
         $this->events = array();

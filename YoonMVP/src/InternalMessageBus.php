@@ -9,7 +9,7 @@ namespace Yoon\YoonMvp;
  * event or command handlers should be swallowed. Intelligent Messagge Systems should know
  * how to retry failing messages until they are successful or failed too often.
  */
-interface MessageBus
+class InternalMessageBus
 {
     /**
      * Publish an event to the bus.
@@ -17,14 +17,10 @@ interface MessageBus
      * @param Event $event
      * @return void
      */
-    public function publish(Message $event);
-        /**
-     * Publish an event to the bus.
-     *
-     * @param Event $event
-     * @return void
-     */
-    public function register(Message $event);
+    public function publish(Event $event)
+    {
+        
+    }
 }
 
 ?>

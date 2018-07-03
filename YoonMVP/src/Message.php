@@ -4,6 +4,12 @@ namespace Yoon\YoonMvp;
 
 use Rhumsaa\Uuid\Uuid;
 
+/**
+ * Represents a generic message which has a unique id/hash.
+ *
+ * The message is the central part of the cqrs architecture allowing to be published over the message bus and delegated to the 
+ * corresponding handlers registered to it.
+ */
 interface Message
 {
     /**
