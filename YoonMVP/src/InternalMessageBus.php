@@ -1,5 +1,7 @@
 <?php
 
+use __\__;
+
 namespace Yoon\YoonMvp;
 /**
  * Message bus handles all messages that were emitted by domain objects or commannd handlers.
@@ -8,18 +10,34 @@ namespace Yoon\YoonMvp;
  * command or event, and then triggers these handlers one after another. Exceptions in
  * event or command handlers should be swallowed. Intelligent Messagge Systems should know
  * how to retry failing messages until they are successful or failed too often.
+ * 
+ * This is a simple in memory message handler.
  */
-class InternalMessageBus
+class InternalMessageBus implements MessageBus
 {
+    private $handlers = array();
+
     /**
-     * Publish an event to the bus.
+     * Publish a message to the bus.
      *
-     * @param Event $event
+     * @param Event $message
      * @return void
      */
-    public function publish(Event $event)
+    public function publish(Message $message) : void
     {
         
+    }
+
+    /**
+     * Registeres a message handler.
+     *
+     * @param Event $handler
+     * @return void
+     */
+    public function register(Handler $handler) : void
+    {
+        __::set();
+        $this->handlers->push();
     }
 }
 
