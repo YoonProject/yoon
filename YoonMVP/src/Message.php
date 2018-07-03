@@ -13,17 +13,18 @@ use Rhumsaa\Uuid\Uuid;
 interface Message
 {
     /**
-     * Gets the message id.
+     * Gets the handler id.
      * @return Rhumsaa\Uuid\Uuid
      */
 
-    public function getId();
+    public function getId() : Uuid;
 
     /**
      * Gets the message hash signed by the id.
      * @return string
      */
-    public function getHashSignedById();
+    public function getHashSignedById() : string;
+
 }
 
 ?>

@@ -12,19 +12,20 @@ namespace Yoon\YoonMvp;
 interface MessageBus
 {
     /**
-     * Publish an event to the bus.
+     * Publishes message to the bus.
      *
-     * @param Event $event
+     * @param Event $message
      * @return void
      */
-    public function publish(Message $event);
-        /**
-     * Publish an event to the bus.
+    public function publish(Message $message);
+
+    /**
+     * Registeres a handler within the message bus.
      *
-     * @param Event $event
+     * @param Event $handler
      * @return void
      */
-    public function register(Message $event);
+    public function register(Handler $handler);
 }
 
 ?>

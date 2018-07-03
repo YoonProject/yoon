@@ -1,8 +1,6 @@
 <?php
 namespace Yoon\YoonMvp;
 
-use Rhumsaa\Uuid\Uuid;
-
 interface WriteRepository extends Repository
 {
     /**
