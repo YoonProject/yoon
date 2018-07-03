@@ -1,6 +1,6 @@
 <?php
 
-namespace Yoon\YoonMvp\Infrastructure\State;
+namespace Yoon\YoonMvp\Infrastructure\Database\State;
 
 class UserState
 {
