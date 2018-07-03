@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.62.4",
+            "version": "3.62.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "85da8eaa967902de148b465d42f4b3027395e6af"
+                "reference": "0935b8b9048c9ca803e8afd8aec8f38225f1de79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/85da8eaa967902de148b465d42f4b3027395e6af",
-                "reference": "85da8eaa967902de148b465d42f4b3027395e6af",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0935b8b9048c9ca803e8afd8aec8f38225f1de79",
+                "reference": "0935b8b9048c9ca803e8afd8aec8f38225f1de79",
                 "shasum": ""
             },
             "require": {
@@ -84,20 +84,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-06-27T21:26:04+00:00"
+            "time": "2018-07-02T20:50:31+00:00"
         },
         {
             "name": "byjg/anydataset",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/byjg/anydataset.git",
-                "reference": "e32915674aef25efdac629f8213c9a83339638b3"
+                "reference": "411617431581e29d7d8670cb4554b432cadf11c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/byjg/anydataset/zipball/e32915674aef25efdac629f8213c9a83339638b3",
-                "reference": "e32915674aef25efdac629f8213c9a83339638b3",
+                "url": "https://api.github.com/repos/byjg/anydataset/zipball/411617431581e29d7d8670cb4554b432cadf11c9",
+                "reference": "411617431581e29d7d8670cb4554b432cadf11c9",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 }
             ],
             "description": "A data abstraction layer in PHP for access read and write Relational Databases, No Sql, Text, Xml, Json, SparQl and others",
-            "time": "2018-03-11T03:54:35+00:00"
+            "time": "2018-07-01T17:45:22+00:00"
         },
         {
             "name": "byjg/micro-orm",

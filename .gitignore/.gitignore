@@ -1,5 +1,6 @@
 # Packages
 /YoonMvp/vendor
+/YoonMvp/vendor/*
 # public
 /YoonMvp/public
 /YoonMVP/vendor/maciejczyzewski/
