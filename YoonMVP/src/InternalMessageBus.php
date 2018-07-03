@@ -3,6 +3,7 @@
 use __\__;
 
 namespace Yoon\YoonMvp;
+
 /**
  * Message bus handles all messages that were emitted by domain objects or commannd handlers.
  *
@@ -11,7 +12,7 @@ namespace Yoon\YoonMvp;
  * event or command handlers should be swallowed. Intelligent Messagge Systems should know
  * how to retry failing messages until they are successful or failed too often.
  * 
- * This is a simple in memory message handler.
+ * This is a simple in memory message bus.
  */
 class InternalMessageBus implements MessageBus
 {
@@ -25,7 +26,13 @@ class InternalMessageBus implements MessageBus
      */
     public function publish(Message $message) : void
     {
-        
+        $handler = $this->findHandler(get_class($message));
+    }
+
+    private function findHandler(string $key) : Handler
+    {
+        $handler = __::get($handler->getHashSignedById(), $this->handlers);
+        return $handler;
     }
 
     /**
@@ -36,8 +43,11 @@ class InternalMessageBus implements MessageBus
      */
     public function register(Handler $handler) : void
     {
-        __::set();
-        $this->handlers->push();
+        if(__::has($this->handlers, $handler->getMessageType()))
+        {
+            return;
+        }
+        __::set($handler->getMessageType(), $handler);
     }
 }
 

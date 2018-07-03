@@ -21,7 +21,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Yoon\\YoonMvp\\": "src/"
+            "Yoon\\YoonMvp\\": "src/",
+            "__\\": "veondor/maciejczyzewski/bottomline/src/"
         }
     },
     "autoload-dev": {
