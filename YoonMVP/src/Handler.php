@@ -1,8 +1,8 @@
 <?php
 
 use Rhumsaa\Uuid\Uuid;
-use GuzzleHttp\Promise\Promise;
 
+use GuzzleHttp\Promise\Promise;
 
 namespace Yoon\YoonMvp;
 
@@ -25,6 +25,7 @@ interface Handler
      * @return Promise
      */
     public function getHandle(Message $message) : Promise;
+
 }
 
 ?>

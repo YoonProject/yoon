@@ -3,16 +3,16 @@
     "type": "standard",
     "description": "The yoon mvp project.",
     "homepage": "https://yoon.online",
-    "license": "creative commons",
+    "license": "MIT",
     "require": {
         "rhumsaa/uuid": "@stable",
         "psr/log": "@stable",
         "byjg/micro-orm": "2.0.*",
         "pleonasm/merkle-tree": "^1.0",
         "php-di/php-di": "^6.0",
-        "maciejczyzewski/bottomline": "^0.1.1",
         "guzzlehttp/guzzle": "^6.3",
-        "guzzlehttp/promises": "^1.3"
+        "guzzlehttp/promises": "^1.3",
+        "maciejczyzewski/bottomline": "^0.1.1"
     },
     "require-dev": {
         "phake/phake":"@stable",

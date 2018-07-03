@@ -6,6 +6,7 @@ namespace Yoon\YoonMvp;
 
 use Yoon\YoonMvp\ErrorLog\ErrorLogException;
 
+
 /**
  * Message bus handles all messages that were emitted by domain objects or commannd handlers.
  *
@@ -34,9 +35,10 @@ class InternalMessageBus implements MessageBus
         })->resolve();
     }
 
-    private function findHandler(string $classType) : Handler
+
+    private function findHandler(string $className) : Handler
     {
-        $handler = __::get($classType, $this->handlers);
+        $handler = __::get($className, $this->handlers);
         return $handler;
     }
 
