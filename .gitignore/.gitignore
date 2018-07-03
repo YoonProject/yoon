@@ -1,6 +1,0 @@
-# Packages
-/YoonMVP/vendor
-/YoonMVP/vendor/*
-# public
-/YoonMVP/public/config_neu_TEST.inc.php
-/YoonMVP/vendor/maciejczyzewski/
