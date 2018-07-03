@@ -4,3 +4,13 @@ YoonMVP/vendor/*
 # public
 YoonMVP/public/config_neu_TEST.inc.php
 .vscode
+YoonMVP/public/config_neu.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/profile.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/bounty.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/checkfbuser.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/contact.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/dashboard.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/helpersql.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/prepresale.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/presale.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/user.inc.php

@@ -1,7 +1,9 @@
 <?php
-namespace Yoon\YoonMvp;
+namespace Yoon\YoonMvp\Query;
 
+use Yoon\YoonMvp\Entity;
 use Rhumsaa\Uuid\Uuid;
+
 
 interface Repository
 {

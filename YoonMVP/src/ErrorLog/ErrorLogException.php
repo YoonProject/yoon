@@ -1,6 +1,8 @@
 <?php
 
-namespace Yoon\Ico\Error; 
+namespace Yoon\YoonMvp\ErrorLog;
+
+use Yoon\YoonMvp\YoonException;
 
 class ErrorLogException extends \Exception implements YoonException
 {
@@ -9,7 +11,7 @@ class ErrorLogException extends \Exception implements YoonException
 
 
     /**
-     * Registeres a global exception handler for handling error log exceptions.
+     * Registeres a global exception handler for handling error log exceptions. TODO: REPLACE WITH HANDLER!!!!
      *
      * @return void
      */

@@ -2,7 +2,7 @@
 
 namespace Yoon\YoonMvp\ErrorLog;
 
-use Yoon\YoonMvp\Repository;
+use Yoon\YoonMvp\Command\Repository;
 
 // Verwaltet alle Stellar Status
 class ErrorLogRepository extends Repository
