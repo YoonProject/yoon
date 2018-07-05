@@ -79,21 +79,6 @@ $app->POST('/Yoon/Api/1.0.0/user', function(Application $app, Request $request) 
             });
 
 
-$app->POST('/Yoon/Api/1.0.0/user/createWithArray', function(Application $app, Request $request) {
-            return new Response('How about implementing createUsersWithArrayInput as a POST method ?');
-            });
-
-
-$app->POST('/Yoon/Api/1.0.0/user/createWithList', function(Application $app, Request $request) {
-            return new Response('How about implementing createUsersWithListInput as a POST method ?');
-            });
-
-
-$app->DELETE('/Yoon/Api/1.0.0/user/{username}', function(Application $app, Request $request, $username) {
-            return new Response('How about implementing deleteUser as a DELETE method ?');
-            });
-
-
 $app->GET('/Yoon/Api/1.0.0/user/{username}', function(Application $app, Request $request, $username) {
             return new Response('How about implementing getUserByName as a GET method ?');
             });
