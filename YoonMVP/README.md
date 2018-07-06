@@ -1,7 +1,7 @@
 # YoonMVP
 
 This is the YOON minimum viable product and can be seen as the first prototype. It's focus lies on design and reliability and is intended to be one of many product lines which work similar. 
-It is heavily based on the project [LiteCQRS](https://github.com/beberlei/litecqrs-php) as skeleton and will be adjusted to the own needs of the business domain within Yoon. It's message bus system is yet very simple since it shall illustrate how the pattern works and how we could implement a reliable approach with it. 
+It is heavily based on the project [LiteCQRS](https://github.com/beberlei/litecqrs-php) as skeleton for CQRS as well as on [pds/skeleton](https://github.com/php-pds/skeleton) as a skeleton for a standard php project structure due both of this tasks were well adopted in the past several years and are very time consuming writing from scratch...They will however be adjusted to the own needs of the business domain within Yoon. It's message bus system is yet very simple since it shall illustrate how the pattern works and how we could implement a reliable approach with it. 
 
 # Requirements for this code structure
 
