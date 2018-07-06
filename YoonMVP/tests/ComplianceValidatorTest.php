@@ -1,18 +1,13 @@
 <?php
-namespace YoonMvp;
+namespace Yoon\YoonMvp\Test;
 
-class ComplianceValidatorTest
+use Yoon\YoonMvp\ComplianceValidator;
+use PHPUnit\Framework\TestCase;
+
+
+class ComplianceValidatorTest extends TestCase
 {
     public $numErrors = 0;
-
-    public static function run()
-    {
-        $tester = new ComplianceValidatorTest();
-        $tester->testValidate_WithIncorrectBin_ReturnsIncorrectBin();
-        $tester->testValidate_WithNonCompliance_SetsNonCompliantState();
-        $tester->testValidate_WithCompliance_SetsCompliantState();
-        echo __CLASS__ . " errors: {$tester->numErrors}" . PHP_EOL;
-    }
 
     public function testValidate_WithIncorrectBin_ReturnsIncorrectBin()
     {
@@ -52,6 +47,7 @@ class ComplianceValidatorTest
                 continue;
             }
         }
+        $this->assertEquals($this->numErrors, 0);
     }
 
     public function testValidate_WithNonCompliance_SetsNonCompliantState()
@@ -68,6 +64,8 @@ class ComplianceValidatorTest
             $this->numErrors++;
             echo __FUNCTION__ . ": Expected a non compliant state" . PHP_EOL;
         }
+
+        $this->assertEquals($this->numErrors, 0);
     }
 
     public function testValidate_WithCompliance_SetsCompliantState()
@@ -85,5 +83,7 @@ class ComplianceValidatorTest
             $this->numErrors++;
             echo __FUNCTION__ . ": Expected a compliant state" . PHP_EOL;
         }
+
+        $this->assertEquals($this->numErrors, 0);
     }
 }

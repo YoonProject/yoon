@@ -1,16 +1,13 @@
 <?php
-namespace YoonMvp;
+namespace Yoon\YoonMvp\Test;
 
-class PackageGeneratorTest
+use PHPUnit\Framework\TestCase;
+use Yoon\YoonMvp\ComplianceValidator;
+use Yoon\YoonMvp\PackageGenerator;
+
+class PackageGeneratorTest extends TestCase
 {
     public $numErrors = 0;
-
-    public static function run()
-    {
-        $tester = new PackageGeneratorTest();
-        $tester->testGenerate_WithMissingBin_ReturnsBin();
-        echo __CLASS__ . " errors: {$tester->numErrors}" . PHP_EOL;
-    }
 
     public function testGenerate_WithMissingBin_ReturnsBin()
     {
@@ -37,5 +34,7 @@ class PackageGeneratorTest
             $this->numErrors++;
                 echo __FUNCTION__ . ": Expected config/ to be absent" . PHP_EOL;
         }
+
+        $this->assertEquals($this->numErrors, 0);
     }
 }
