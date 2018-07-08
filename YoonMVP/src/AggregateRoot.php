@@ -1,24 +1,24 @@
 <?php
 namespace Yoon\YoonMvp;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 abstract class AggregateRoot extends Entity
 {
     /**
-     * @var Rhumsaa\Uuid\Uuid
+     * @var Ramsey\Uuid\Uuid;
      */
     private $id;
 
-    protected function setId(Uuid $uuid)
+    final protected function setId(Uuid $uuid) : void
     {
         $this->id = $uuid;
     }
 
     /**
-     * @return Rhumsaa\Uuid\Uuid
+     * @return Ramsey\Uuid\Uuid;
      */
-    final public function getId()
+    final public function getId() : Uuid
     { 
         return $this->id;
     }
@@ -27,10 +27,14 @@ abstract class AggregateRoot extends Entity
      * Gets the entity hash signed by the id.
      * @return string
      */
-    final public function getHashSignedById()
+    public function getHashSignedById() : string
     {
         return sodium_crypto_generichash($this->id);
     }
 
-    public abstract function apply(Event $event);
+    /**
+     * Applies the new state with the given event.
+     * @return void
+     */
+    public abstract function apply(Event $event):void;
 }

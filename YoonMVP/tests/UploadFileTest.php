@@ -1,9 +1,9 @@
 <?php
 namespace Yoon\YoonMvp\Test;
 
-use PHPUnit\Framework\TestCase;
 use Yoon\YoonMvp\Command\MakeUploadCommand;
-
+use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class UploadFileTest extends TestCase
 {
@@ -14,6 +14,9 @@ class UploadFileTest extends TestCase
      */
     private $files = [];
 
+    private $container;
+
+
     /**
      * Put your temp image into your filesystem.
      * (Not good as unit tests must work with any system,
@@ -21,6 +24,13 @@ class UploadFileTest extends TestCase
      */
     protected function setUp()
     {
+        $builder = new \DI\ContainerBuilder();
+        $builder->useAnnotations(true);
+        $builder->ignorePhpDocErrors(true);
+        $builder->addDefinitions('src/DependencyConfig.php');
+        $container = $builder->build();
+        $container->injectOn($this);
+
         if (file_exists(dirname(__FILE__) . '/testImage.jpg')) {
             try {
                 rmdir(dirname(__FILE__) . '/testImage.jpg');
@@ -39,16 +49,20 @@ class UploadFileTest extends TestCase
         }
 
         $this->files[] = '/testImage.jpg';
+        parent::setUp();
     }
 
 
-    public function testUploadFile_makeUpload_ReturnsOk()
+    public function testUploadFile_makeUpload_succeeds()
     {
         $expectedResult = '200';
-        $
+        $id = new Uuid();
         $fileName = '/testImage.jpg';
-        $generator = new MakeUploadCommand(new Uuid(), );
-        $files = $generator->createFileList($validatorResults);
+        $hash = sodium_crypto_generichash($id);
+        $handler = MakeUploadCommandHandler::class.MakeUploadCommand::class;
+        $commandHandler = $this->handler;
+        $command = new MakeUploadCommand($id, $hash, $fileName);
+
 
 
         $this->assertEquals($this->numErrors, 0);

@@ -1,6 +1,6 @@
 <?php
 
-use Rhumsaa\Uuid\Uuid;
+use Rhumsey\Uuid\Uuid;
 
 use GuzzleHttp\Promise\Promise;
 

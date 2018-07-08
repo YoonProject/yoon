@@ -3,6 +3,7 @@
 namespace Yoon\YoonMvp\ErrorLog;
 
 use Yoon\YoonMvp\Command\Repository;
+use Yoon\YoonMvp\Domain\Aggregate\ErrorLogAggregate;
 
 // Verwaltet alle Stellar Status
 class ErrorLogRepository extends Repository
@@ -75,6 +76,27 @@ class ErrorLogRepository extends Repository
         } else {
             return 0;
         }
+    }
+
+     /**
+     * Saves the aggregate root.
+     * @return void
+     */
+    public function save(AggregateRoot $aggregate)
+    {
+
+    }
+
+    /**
+     * @param string $className
+     * @param int $expectedVersion
+     *
+     * @return AggregateRoot
+     */
+    public function find($className, Uuid $id, $expectedVersion = null) : AggregateRoot
+    {
+        $aggregate = new ErrorLogAggregate($id);
+        return $aggregate;
     }
 }
 
