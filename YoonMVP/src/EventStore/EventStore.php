@@ -1,7 +1,7 @@
 <?php
 namespace Yoon\YoonMvp\EventStore;
 
-use Rhumsaa\Uuid\Uuid;
+use Rhumsey\Uuid\Uuid;
 use Yoon\YoonMvp\EventStore\EventStream;
 
 /**
@@ -23,5 +23,5 @@ interface EventStore
      *
      * @return Transaction
      */
-    public function commit(EventStream $stream);
+    public function commit(EventStream $stream) : Transaction; 
 }

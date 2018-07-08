@@ -2,7 +2,7 @@
 
 namespace Yoon\YoonMvp;
 
-use Rhumsaa\Uuid\Uuid;
+use Rhumsey\Uuid\Uuid;
 
 interface Entity
 {
@@ -11,13 +11,13 @@ interface Entity
      * @return Rhumsaa\Uuid\Uuid
      */
 
-    public function getId();
+    public function getId() : Uuid;
 
     /**
      * Gets the entity hash signed by the id.
      * @return string
      */
-    public function getHashSignedById();
+    public function getHashSignedById(): string;
 
 
 }
