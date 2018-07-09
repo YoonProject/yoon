@@ -2,7 +2,7 @@
 
 namespace Yoon\YoonMvp;
 
-class BasicFile extends Hoa\Stream\Stream
+class HttpStream extends Hoa\Stream\Stream
 {
     protected function &_open($streamName, Hoa\Stream\Context $context = null)
     {

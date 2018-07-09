@@ -3,7 +3,7 @@
 namespace Yoon\YoonMvp\Command;
 
 use Yoon\YoonMvp\Command;
-use Rhumsey\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class MakeUploadCommand implements Command
 {

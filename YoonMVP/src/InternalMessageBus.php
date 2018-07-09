@@ -31,14 +31,14 @@ class InternalMessageBus implements MessageBus
     {
         $handler = $this->findHandler(get_class($message));
         $handler->getHandle($message)->$promise->then(null, function ($reason) {
-            throw new \Exception($reason);
+            throw new ErrorLogException($reason);
         })->resolve();
     }
 
 
     private function findHandler(string $className) : Handler
     {
-        $handler = __::get($className, $this->handlers);
+        $handler = __::get($this->handlers, $className);
         return $handler;
     }
 
@@ -54,7 +54,7 @@ class InternalMessageBus implements MessageBus
         {
             return;
         }
-        __::set($handler->getMessageType(), $handler);
+        __::set($this->handlers, $handler->getMessageType(), $handler);
     }
 }
 

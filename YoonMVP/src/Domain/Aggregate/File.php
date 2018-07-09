@@ -5,8 +5,11 @@ namespace Yoon\YoonMvp\Domain\Aggregate;
 use Yoon\YoonMvp\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 
-class ErrorLogAggregate extends AggregateRoot
+class File extends AggregateRoot
 {
+    private $fileName;
+    private $relativePath;
+
     function __constructor(Uuid $id)
     {
         $this->setId($id);

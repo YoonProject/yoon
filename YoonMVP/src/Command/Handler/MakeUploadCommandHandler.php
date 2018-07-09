@@ -4,6 +4,7 @@ namespace Yoon\YoonMvp\Commnand\Handler;
 
 use Yoon\YoonMvp\Commnand\MakeUploadCommand;
 use Yoon\YoonMvp\Message;
+use Yoon\YoonMvp\MessageBus;
 use Yoon\YoonMvp\ErrorLog\ErrorLogException;
 use Yoon\YoonMvp\ErrorLog\ErrorLogType;
 use Ramsey\Uuid\Uuid;
@@ -16,10 +17,12 @@ use GuzzleHttp\Promise\Promise;
  */
 class MakeUploadCommandHandler implements Handler
 {
+    private $repositoryPipe;
 
-    function __constructor(MessageBus $messageBus)
+    function __constructor(MessageBus $messageBus, RepositoryPipe $repositoryPipe)
     {
-
+        $messageBus->register($this);
+        $this->repositoryPipe = $repositoryPipe;
     }
 
     /**

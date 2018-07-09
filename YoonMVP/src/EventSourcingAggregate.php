@@ -2,10 +2,10 @@
 namespace Yoon\YoonMvp;
 
 use Yoon\YoonMvp\EventStore\EventStream;
+use Yoon\YoonMvp\AggregateRoot;
+use Ramsey\Uuid\Uuid;
 
-use Rhumsaa\Uuid\Uuid;
-
-abstract class CqrsAggregate extends AggregateRoot
+abstract class EventSourcingAggregate extends AggregateRoot
 {
     /**
      * @var array<Event>
@@ -25,7 +25,7 @@ abstract class CqrsAggregate extends AggregateRoot
         }
         $this->setId($eventStream->getUuid());
         foreach ($eventStream as $event) {
-            $this->executeEvent($event);
+            $this->apply($event);
         }
     }
 

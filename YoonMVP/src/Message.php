@@ -2,7 +2,7 @@
 
 namespace Yoon\YoonMvp;
 
-use Rhumsey\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Represents a generic message which has a unique id/hash.

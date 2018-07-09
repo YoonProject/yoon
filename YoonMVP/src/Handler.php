@@ -1,10 +1,9 @@
 <?php
 
-use Rhumsey\Uuid\Uuid;
-
-use GuzzleHttp\Promise\Promise;
-
 namespace Yoon\YoonMvp;
+
+use Ramsey\Uuid\Uuid;
+use GuzzleHttp\Promise\Promise;
 
 /**
  * Handles a specified message type aka "Event"Handler respectivly "Command"Handler triggered by the messae bus.

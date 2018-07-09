@@ -7,7 +7,7 @@ use Yoon\YoonMvp\EventStore\EventStream;
 /**
  * Stores events grouped together in streams identified by UUID.
  *
- * The EventStore is used to implement EventSourcing in LiteCQRS
+ * The EventStore is used to implement EventSourcing in CQRS
  * and is not neeeded otherwise.
  */
 interface EventStore

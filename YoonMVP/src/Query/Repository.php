@@ -2,7 +2,7 @@
 namespace Yoon\YoonMvp\Query;
 
 use Yoon\YoonMvp\Entity;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 
 interface Repository

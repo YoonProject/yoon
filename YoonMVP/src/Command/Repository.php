@@ -2,7 +2,7 @@
 namespace Yoon\YoonMvp\Command;
 
 use Yoon\YoonMvp\AggregateRoot;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 interface Repository
 {
