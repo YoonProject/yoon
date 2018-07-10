@@ -11,11 +11,13 @@ use __\__;
 class ProcessManager extends AggregateRoot
 {
     private $attachedProcesses;
+    private $originAggregate;
 
-    function __constructor(array $processes)
+    function __constructor(AggregateRoot $originAggregate, array $processes)
     {
         $this->setId(Uuid::uuid4());
         $this->attachedProcesses = $processes;
+        $this->originAggregate = $originAggregate;
     }
 
     /**
@@ -35,18 +37,29 @@ class ProcessManager extends AggregateRoot
      * Applies the new state with the given event.
      * @return void
      */
-    final public function apply(Event $event):Promise
+    public function apply(Event $event):Promise
     {
-        $promise = new Promise();
         $processChain = __::filter($this->attachedProcesses, function(Process $process) {
                 return $process->getProcessState() == ProcessState::Pending;
             });
+        $rootPromise = $this->originAggregate->apply($event);
+        $chainPromise = $rootPromise;
         foreach($processChain as $process)
         {
-            $promise->then(function ($processEvent){
+            $chainPromise = $chainPromise->then(function ($processEvent){
                 return $process->apply($processEvent);
             });
         }
-        return $promise;
+        return $rootPromise;
+    }
+
+    /**
+    * Gets all processes.
+    *
+    * @return array<Process>
+    */
+    final public function getProcesses() : array
+    {
+        return $this->attachedProcesses;
     }
 }

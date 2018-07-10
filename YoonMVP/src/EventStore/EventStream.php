@@ -4,7 +4,7 @@ namespace Yoon\YoonMvp\EventStore;
 
 use Yoon\YoonMvp\Event;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use IteratorAggregate;
 use ArrayIterator;
 
@@ -14,7 +14,7 @@ use ArrayIterator;
 class EventStream implements IteratorAggregate
 {
     /**
-     * @var Rhumsaa\Uuid\Uuid
+     * @var Ramsey\Uuid\Uuid
      */
     private $uuid;
 
@@ -51,7 +51,7 @@ class EventStream implements IteratorAggregate
      *
      * @return string
      */
-    public function getClassName()
+    public function getClassName() : string
     {
         return $this->className;
     }

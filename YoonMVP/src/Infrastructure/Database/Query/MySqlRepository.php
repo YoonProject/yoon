@@ -4,8 +4,9 @@ namespace Yoon\YoonMvp\Infrastructure\Query;
 
 use Yoon\YoonMvp\Query\Repository;
 use Yoon\YoonMvp\Entity;
-use \ByJG\MicroOrm\Mapper;
-use \ByJG\AnyDataset\Factory;
+use ByJG\MicroOrm\Mapper;
+use ByJG\AnyDataset\Factory;
+use Ramsey\Uuid\Uuid;
 
 
 abstract class MySqlRepository implements Repository {

@@ -2,7 +2,10 @@
 
 namespace Yoon\YoonMvp\Domain\State;
 
-class FileState
+use Yoon\YoonMvp\State;
+use Ramsey\Uuid\Uuid;
+
+class FileState implements State
 {
     private $id;
     private $createDate;
@@ -11,16 +14,13 @@ class FileState
     private $yoonFileMerkleRoot;
     private $fileType;
 
-    private $userStates;
-
     function __constructor(
         Uuid $id, 
         \DateTime $createDate, 
         string $fileName, 
         string $relativePath, 
         string $yoonFileMerkleRoot,
-        string $fileType, 
-        array $userStates)
+        string $fileType)
     {
         $this->id = $id;
         $this->createDate = $createDate;
@@ -31,32 +31,27 @@ class FileState
         $this->userStates = $userStates;
     }
 
-    public function getId()
+    public function getId() : Uuid
     {
         return $this->id;
     }
-    public function getName()
+    public function getFileName() : string
     {
-        return $this->name;
+        return $this->fileName;
     }
-    public function getCreatedDate()
+    public function getCreatedDate() : \DateTime
     {
         return $this->createdDate;
     }
-    public function getRelativePath()
+    public function getRelativePath() : string
     {
         return $this->relativePath;
     }
-    public function getYoonFileMerkleRoot()
+    public function getYoonFileMerkleRoot() : string
     {
         return $this->yoonFileMerkleRoot;
     }
-    public function getFileType()
-    {
-        return $this->fileType;
-    }
-
-    public function getUserstates()
+    public function getFileType() : string
     {
         return $this->fileType;
     }

@@ -26,6 +26,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Yoon\\YoonPublic\\": "public/",
             "Yoon\\YoonMvp\\": "src/",
             "__\\": "vendor/maciejczyzewski/bottomline/src/"
         }

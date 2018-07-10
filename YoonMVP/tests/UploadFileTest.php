@@ -1,7 +1,7 @@
 <?php
 namespace Yoon\YoonMvp\Test;
 
-use Yoon\YoonMvp\Command\MakeUploadCommand;
+use Yoon\YoonMvp\Domain\Command\MakeUploadCommand;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

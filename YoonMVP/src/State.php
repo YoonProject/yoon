@@ -2,17 +2,15 @@
 
 namespace Yoon\YoonMvp;
 
-use Yoon\YoonMvp\AggregateRoot; 
-use GuzzleHttp\Promise\Promise;
+use Ramsey\Uuid\Uuid; 
 
-
-abstract class Process
+interface State 
 {
     /**
-     * Applies the new state with the given event.
-     * @return void
+     * Gets the states unique id.
+     * @return Uuid
      */
-    public abstract function getAction(AggregateRoot $aggregate):Promise;
+    public function getId() : Uuid;
 }
 
 ?>

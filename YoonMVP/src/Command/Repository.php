@@ -10,7 +10,7 @@ interface Repository
      * Saves the aggregate root.
      * @return void
      */
-    public function save(AggregateRoot $aggregate);
+    public function save(AggregateRoot $aggregate) : void;
 
     /**
      * @param string $className

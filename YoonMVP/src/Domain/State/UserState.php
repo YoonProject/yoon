@@ -2,58 +2,50 @@
 
 namespace Yoon\YoonMvp\Domain\State;
 
+use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class UserState
+class UserState implements State
 {
-    private $id;
-    private $createDate;
-    private $name;
-    private $yoonPublicKey;
-    private $accountType;
-
-    private $fileStates;
+    public $id;
+    public $createDate;
+    public $name;
+    public $yoonPublicKey;
+    public $accountType;
 
     function __constructor(
-        Uuid $id, 
+        int $id, 
         \DateTime $createDate, 
         string $name,
         string $yoonPublicKey,
-        string $accountType, 
-        array $fileStates)
+        string $accountType)
     {
         $this->id = $id;
         $this->createDate = $createDate;
-        $this->fileName = $fileName;
-        $this->relativePath = $relativePath;
-        $this->yoonFileMerkleRoot = $yoonFileMerkleRoot;
-        $this->fileType = $fileType;
-        $this->fileStates = $fileStates;
+        $this->name = $name;
+        $this->yoonPublicKey = $yoonPublicKey;
+        $this->accountType = $accountType;
     }
 
-    public function getId()
+    public function getId() : Uuid
     {
-        return $this->id;
+        return Uuid::fromInteger($this->id);
     }
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
-    public function getCreatedDate()
+    public function getCreatedDate() : \DateTime
     {
         return $this->createdDate;
     }
-    public function getRelativePath()
+    public function getYoonPublicKey() : string
     {
-        return $this->relativePath;
+        return $this->yoonPublicKey;
     }
-    public function getYoonFileMerkleRoot()
+    public function getAccountType()
     {
-        return $this->yoonFileMerkleRoot;
-    }
-    public function getFileType()
-    {
-        return $this->fileType;
+        return $this->accountType;
     }
 }
 

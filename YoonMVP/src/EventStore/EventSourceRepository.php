@@ -2,9 +2,9 @@
 
 namespace Yoon\YoonMvp\EventStore;
 
-use Yoon\YoonMvp\Event\EventMessageBus;
+use Yoon\YoonMvp\MessageBus;
 use Yoon\YoonMvp\AggregateRoot;
-use Yoon\YoonMvp\Repository;
+use Yoon\YoonMvp\Command\Repository;
 use Yoon\YoonMvp\AggregateRootNotFoundException;
 
 use Rhumsaa\Uuid\Uuid;
@@ -15,7 +15,7 @@ class EventSourceRepository implements Repository
     private $eventBus;
     private $streams = array();
 
-    public function __construct(EventStore $eventStore, EventMessageBus $eventBus)
+    public function __construct(EventStore $eventStore, MessageBus $eventBus)
     {
         $this->eventStore = $eventStore;
         $this->eventBus = $eventBus;
@@ -24,7 +24,7 @@ class EventSourceRepository implements Repository
     /**
      * @return AggregateRoot
      */
-    public function find($className, Uuid $uuid, $expectedVersion = null)
+    public function find($className, Uuid $uuid, $expectedVersion = null) : AggregateRoot
     {
         try {
             $eventStream = $this->eventStore->find($uuid);
@@ -55,7 +55,7 @@ class EventSourceRepository implements Repository
     /**
      * @return void
      */
-    public function save(AggregateRoot $object)
+    public function save(AggregateRoot $object) : void
     {
         $id = (string)$object->getId();
 

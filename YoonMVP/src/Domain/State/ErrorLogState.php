@@ -2,11 +2,45 @@
 
 namespace Yoon\YoonMvp\Domain\State;
 
-class ErrorLogState
+use Yoon\YoonMvp\State;
+use Ramsey\Uuid\Uuid;
+
+class ErrorLogState implements State
 {
-    public $id;
-    public $name;
-    public $createdate;
+    private $id;
+    private $errorLogType;
+    private $message;
+    private $createDate;
+
+
+    function __constructor(Uuid $id, string $errorLogType, string $message, \DateTime $createdDate)
+    {
+        $this->id = $id;
+        $this->errorLogType = $errorLogType;
+        $this->message = $message;
+        $this->createdDate = $createdDate;
+    }
+
+
+    public function getId() : Uuid 
+    {
+        return $this->id;
+    }
+    
+    public function getErrorLogType() : string 
+    {
+        return $this->errorLogType;
+    }
+    
+    public function getMessage() : string 
+    {
+        return $this->message;
+    }
+    
+    public function getCreatedDate() : \DateTime 
+    {
+        return $this->createdDate;
+    }
 }
 
 ?>
