@@ -1,8 +1,8 @@
 <?php
 
-namespace Yoon\YoonMvp\Infrastructure\Database\State;
+namespace Yoon\YoonMvp\Domain\State;
 
-class UserState
+class ErrorLogState
 {
     public $id;
     public $name;

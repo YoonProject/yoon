@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e305ffe6526f2ac637c82b2e3b6e9ee9",
+    "content-hash": "ef5c9c030071bdeadd094a38d8a584a3",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1440,6 +1440,42 @@
                 "dependency injection"
             ],
             "time": "2013-11-22T08:30:29+00:00"
+        },
+        {
+            "name": "pitsolu/merkle-tree",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pitsolu/merkle-tree.git",
+                "reference": "101a3f13536ef58ff5421787e4e03c6b657a4652"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pitsolu/merkle-tree/zipball/101a3f13536ef58ff5421787e4e03c6b657a4652",
+                "reference": "101a3f13536ef58ff5421787e4e03c6b657a4652",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Merkle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moderator",
+                    "email": "pitsolu@gmail.com"
+                }
+            ],
+            "description": "Merkle Tree",
+            "time": "2018-01-22T15:02:06+00:00"
         },
         {
             "name": "pleonasm/merkle-tree",
@@ -4123,7 +4159,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pitsolu/merkle-tree": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

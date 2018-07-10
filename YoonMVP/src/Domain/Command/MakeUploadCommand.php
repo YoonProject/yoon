@@ -1,6 +1,6 @@
 <?php
 
-namespace Yoon\YoonMvp\Command;
+namespace Yoon\YoonMvp\Domain\Command;
 
 use Yoon\YoonMvp\Command;
 use Ramsey\Uuid\Uuid;
@@ -8,13 +8,15 @@ use Ramsey\Uuid\Uuid;
 class MakeUploadCommand implements Command
 {
     private $fileName;
+    private $relativePath;
     private $id;
     private $hash;
 
-    function __constructor(Uuid $id, string $hash, string $fileName)
+    function __constructor(Uuid $id, string $hash, string $relativePath, string $fileName)
     {
         $this->id = $id;
         $this->hash = $hash;
+        $this->relativePath = $relativePath;
         $this->fileName = $fileName;
     }
 

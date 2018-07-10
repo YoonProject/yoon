@@ -14,9 +14,9 @@ class ErrorLog extends AggregateRoot
 
     /**
      * Applies the new state with the given event.
-     * @return void
+     * @return Promise
      */
-    final public function apply(Event $event):void 
+    final public function apply(Event $event):Promise 
     {
 
     }

@@ -8,24 +8,56 @@ use Ramsey\Uuid\Uuid;
 class User extends Entity
 {
     private $userName;
+    private $yoonPublicKey;
     private $publicKey;
+    private $blockchainType;
 
 
-    function __constructor(Uuid $id, string $userName, string $publicKey)
+    function __constructor(Uuid $id, string $userName, string $yoonPublicKey, string $publicKey, string $blockchainType)
     {
         $this->setId($id);
         $this->userName = $userName;
-        $this->
+        $this->yoonPublicKey = $yoonPublicKey;
+        $this->publicKey = $publicKey;
+        $this->blockchainType = $blockchainType;
     }
 
     /**
-     * Applies the new state with the given event.
-     * @return void
+     * Gets the yoons public key aka our merkle root.
+     * @return string
+     */
+    final public function getUserName():string 
+    {
+        return $this->yoonPublicKey;
+    }
+
+    /**
+     * Gets the yoons public key aka our merkle root.
+     * @return string
+     */
+    final public function getYoonPublicKey():string 
+    {
+        return $this->yoonPublicKey;
+    }
+
+    /**
+     * Gets the users blockchain dependend public key e.g. stellar.
+     * @return string
      */
     final public function getPublicKey():string 
     {
-        
+        return $this->publicKey;
     }
+
+    /**
+     * Gets the users blockchain dependend public key e.g. stellar.
+     * @return string
+     */
+    final public function getBlockchainType():string 
+    {
+        return $this->blockchainType;
+    }
+
 }
 
 

@@ -15,7 +15,8 @@
         "ramsey/uuid": "^3.7",
         "silex/silex": "~1.2",
         "hoa/stream": "1.17.02.21",
-        "doctrine/annotations": "^1.6"
+        "doctrine/annotations": "^1.6",
+        "pitsolu/merkle-tree": "dev-master"
     },
     "require-dev": {
         "doctrine/common": "^2.8.1",

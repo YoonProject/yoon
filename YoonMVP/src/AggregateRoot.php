@@ -2,6 +2,7 @@
 namespace Yoon\YoonMvp;
 
 use Ramsey\Uuid\Uuid;
+use GuzzleHttp\Promise\Promise;
 
 abstract class AggregateRoot extends Entity
 {
@@ -36,5 +37,5 @@ abstract class AggregateRoot extends Entity
      * Applies the new state with the given event.
      * @return void
      */
-    public abstract function apply(Event $event):void;
+    public abstract function apply(Event $event):Promise;
 }

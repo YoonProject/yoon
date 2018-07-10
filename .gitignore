@@ -1,6 +1,8 @@
 # Packages
 YoonMVP/vendor
 YoonMVP/vendor/*
+YoonMVP/stellar-api/vendor
+YoonMVP/stellar-api/vendor/*
 # public
 YoonMVP/public/config_neu_TEST.inc.php
 YoonMVP/public/config_neu.inc.php

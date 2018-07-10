@@ -50,11 +50,11 @@ class InternalMessageBus implements MessageBus
      */
     public function register(Handler $handler) : void
     {
-        if(__::has($this->handlers, $handler->getMessageType()))
+        if(__::has($this->handlers, $handler->getId().$handler->getMessageType()))
         {
             return;
         }
-        __::set($this->handlers, $handler->getMessageType(), $handler);
+        __::set($this->handlers, $handler->getId().$handler->getMessageType(), $handler);
     }
 }
 
