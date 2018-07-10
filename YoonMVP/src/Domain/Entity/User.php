@@ -1,25 +1,38 @@
 <?php
 
-namespace Yoon\YoonMvp\Domain\Aggregate;
+namespace Yoon\YoonMvp\Domain\Entity;
 
 use Yoon\YoonMvp\Entity;
+use Yoon\YoonMvp\Domain\State\User as UserState;
 use Ramsey\Uuid\Uuid;
 
 class User extends Entity
 {
-    private $userName;
-    private $yoonPublicKey;
-    private $publicKey;
-    private $blockchainType;
+    private $userState;
 
 
-    function __constructor(Uuid $id, string $userName, string $yoonPublicKey, string $publicKey, string $blockchainType)
+    function __construct(UserState $userState)
     {
-        $this->setId($id);
-        $this->userName = $userName;
-        $this->yoonPublicKey = $yoonPublicKey;
-        $this->publicKey = $publicKey;
-        $this->blockchainType = $blockchainType;
+        $this->userState = $userState;
+    }
+
+    /**
+     * Gets the entity id.
+     * @return Rhumsaa\Uuid\Uuid
+     */
+    public function getId() : Uuid
+    {
+        return $this->userState->getId();
+    }
+
+
+    /**
+     * Gets the entity hash signed by the id.
+     * @return string
+     */
+    public function getHashSignedById(): string
+    {
+        return sodium_crypto_generichash($this->getId());
     }
 
     /**
@@ -28,7 +41,7 @@ class User extends Entity
      */
     final public function getUserName():string 
     {
-        return $this->yoonPublicKey;
+        return $this->userState->getUserName();
     }
 
     /**
@@ -37,7 +50,7 @@ class User extends Entity
      */
     final public function getYoonPublicKey():string 
     {
-        return $this->yoonPublicKey;
+        return $this->userState->getYoonPublicKey();
     }
 
     /**
@@ -46,7 +59,7 @@ class User extends Entity
      */
     final public function getPublicKey():string 
     {
-        return $this->publicKey;
+        return $this->userState->getPublicKey();
     }
 
     /**
@@ -55,9 +68,17 @@ class User extends Entity
      */
     final public function getBlockchainType():string 
     {
-        return $this->blockchainType;
+        return $this->userState->getBlockchainType();
     }
 
+    /**
+     * Gets the entity hash signed by the id.
+     * @return string
+     */
+    public function getState(): State 
+    {
+        return $this->userState;
+    }
 }
 
 

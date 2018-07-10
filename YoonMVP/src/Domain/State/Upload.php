@@ -5,19 +5,19 @@ namespace Yoon\YoonMvp\Domain\State;
 use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class UploadState implements State
+class Upload implements State
 {
     public $id;
     public $createDate;
     public $uploadFinished;
-    public $fileState;
-    public $userState;
+    public $file;
+    public $user;
 
-    function __constructor(
+    function __construct(
         Uuid $id, 
         \DateTime $createDate, 
-        UserState $userState,
-        FileState $fileState,
+        User $userState,
+        File $fileState,
         bool $uploadFinished = false)
     {
         $this->id = $id;
@@ -35,12 +35,12 @@ class UploadState implements State
     {
         return $this->createdDate;
     }
-    public function getFileState() : FileState
+    public function getFile() : File
     {
         return $this->fileType;
     }
 
-    public function getUserState() : UserState
+    public function getUser() : User
     {
         return $this->userStates;
     }

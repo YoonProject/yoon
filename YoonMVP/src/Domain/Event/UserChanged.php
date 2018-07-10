@@ -5,12 +5,12 @@ namespace Yoon\YoonMvp\Domain\Event;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class UserStateChanged extends Event
+class UserChanged extends Event
 {
     private $id;
     private $hash; 
 
-    function __constructor()
+    function __construct()
     {
         
     }

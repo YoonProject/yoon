@@ -1,6 +1,7 @@
 <?php
 namespace Yoon\YoonMvp;
 
+use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 use GuzzleHttp\Promise\Promise;
 
@@ -10,6 +11,12 @@ abstract class AggregateRoot extends Entity
      * @var Ramsey\Uuid\Uuid;
      */
     private $id;
+    protected $state;
+
+    function __construct(State $state)
+    {
+        $this->state = $state;
+    }
 
     final protected function setId(Uuid $uuid) : void
     {
@@ -28,7 +35,7 @@ abstract class AggregateRoot extends Entity
      * Gets the entity hash signed by the id.
      * @return string
      */
-    public function getHashSignedById() : string
+    final public function getHashSignedById() : string
     {
         return sodium_crypto_generichash($this->id);
     }
@@ -38,4 +45,15 @@ abstract class AggregateRoot extends Entity
      * @return void
      */
     public abstract function apply(Event $event):Promise;
+
+
+    /**
+     * Gets the state.
+     * @return State
+     */
+    final public function getState(): State
+    {
+        return $this->state;
+    }
+
 }

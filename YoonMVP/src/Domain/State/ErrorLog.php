@@ -5,7 +5,7 @@ namespace Yoon\YoonMvp\Domain\State;
 use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class ErrorLogState implements State
+class ErrorLog implements State
 {
     private $id;
     private $errorLogType;
@@ -13,7 +13,7 @@ class ErrorLogState implements State
     private $createDate;
 
 
-    function __constructor(Uuid $id, string $errorLogType, string $message, \DateTime $createdDate)
+    function __construct(Uuid $id, string $errorLogType, string $message, \DateTime $createdDate)
     {
         $this->id = $id;
         $this->errorLogType = $errorLogType;

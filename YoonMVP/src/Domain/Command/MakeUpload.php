@@ -5,16 +5,18 @@ namespace Yoon\YoonMvp\Domain\Command;
 use Yoon\YoonMvp\Command;
 use Ramsey\Uuid\Uuid;
 
-class MakeUploadCommand implements Command
+class MakeUpload implements Command
 {
+    private $userId;
     private $fileName;
     private $relativePath;
     private $id;
     private $hash;
 
-    function __constructor(Uuid $id, string $hash, string $relativePath, string $fileName)
+    function __construct(Uuid $id, Uuid $userId, string $hash, string $relativePath, string $fileName)
     {
         $this->id = $id;
+        $this->userId = $userId;
         $this->hash = $hash;
         $this->relativePath = $relativePath;
         $this->fileName = $fileName;
@@ -29,6 +31,17 @@ class MakeUploadCommand implements Command
     {
         return $this->id;
     }
+
+    /**
+     * Gets the handler id.
+     * @return Rhumsaa\Uuid\Uuid
+     */
+
+    public function getUserId() : Uuid
+    {
+        return $this->userId;
+    }
+
 
     /**
      * Gets the message hash signed by the id.

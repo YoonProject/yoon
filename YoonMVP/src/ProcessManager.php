@@ -13,9 +13,9 @@ class ProcessManager extends AggregateRoot
     private $attachedProcesses;
     private $originAggregate;
 
-    function __constructor(AggregateRoot $originAggregate, array $processes)
+    function __construct(AggregateRoot $originAggregate, array $processes)
     {
-        $this->setId(Uuid::uuid4());
+        parent::__construct($originAggregate);
         $this->attachedProcesses = $processes;
         $this->originAggregate = $originAggregate;
     }

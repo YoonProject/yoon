@@ -20,4 +20,9 @@ interface Entity
     public function getHashSignedById(): string;
 
 
+    /**
+     * Gets the entity hash signed by the id.
+     * @return string
+     */
+    public function getState(): State;
 }

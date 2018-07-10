@@ -16,7 +16,7 @@ return [
     'repositories' => function (ContainerInterface $c) {
         return array($c->get(Yoon\YoonMvp\Command\Repository::class));
     },
-    Handler::class.MakeUploadCommand::class => \DI\autowire(MakeUploadCommandHandler::class)->constructor()
+    Handler::class.MakeUpload::class => \DI\autowire(MakeUploadCommandHandler::class)->constructor()
 ];
 
 

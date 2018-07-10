@@ -2,22 +2,19 @@
 
 namespace Yoon\YoonMvp\Domain\Aggregate;
 
-use Yoon\YoonMvp\Domain\State\FileState;
-use Yoon\YoonMvp\Domain\Event\FileStateChanged;
+use Yoon\YoonMvp\Domain\Event\FileChanged;
+use Yoon\YoonMvp\Domain\State\File as FileState;
 use Yoon\YoonMvp\Process;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
 class File extends Process
 {
-    private $user;
-    private $state;
+    private $fileState;
 
-    function __constructor(FileState $state, User $user)
+    function __construct(FileState $fileState)
     {
-        $this->setId($id);
-        $this->user = $user;
-        $this->state = $state;
+        parent::__construct($fileState);
     }
 
     /**
@@ -26,9 +23,9 @@ class File extends Process
      */
     final public function apply(Event $event):Promise 
     {
-        if(get_class($event) == FileStateChanged::class) 
+        if(get_class($event) == FileChanged::class) 
         {
-            
+            return new Promise();
         }
     }
 

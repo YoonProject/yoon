@@ -24,7 +24,7 @@ class MakeUploadCommandHandler implements Handler
     private $repositoryPipe;
     private $processManager;
 
-    function __constructor(MessageBus $messageBus, RepositoryPipe $repositoryPipe, ProcessManager $processManager)
+    function __construct(MessageBus $messageBus, RepositoryPipe $repositoryPipe, ProcessManager $processManager)
     {
         $this->$messageBus = $messageBus;
         $messageBus->register($this);

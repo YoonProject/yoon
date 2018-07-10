@@ -5,7 +5,7 @@ namespace Yoon\YoonMvp\Domain\Event;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class FileStateChanged extends Event
+class FileChanged extends Event
 {
     private $id;
     private $hash; 
@@ -19,7 +19,7 @@ class FileStateChanged extends Event
 
 
 
-    function __constructor(
+    function __construct(
         Uuid $userId, 
         int $fileOperationType, 
         \DateTime $createDate, 

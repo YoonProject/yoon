@@ -5,16 +5,16 @@ namespace Yoon\YoonMvp\Domain\State;
 use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class FileState implements State
+class File implements State
 {
-    private $id;
-    private $createDate;
-    private $fileName;
-    private $relativePath;
-    private $yoonFileMerkleRoot;
-    private $fileType;
+    public $id;
+    public $createDate;
+    public $fileName;
+    public $relativePath;
+    public $yoonFileMerkleRoot;
+    public $fileType;
 
-    function __constructor(
+    function __construct(
         Uuid $id, 
         \DateTime $createDate, 
         string $fileName, 

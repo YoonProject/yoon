@@ -3,13 +3,17 @@
 namespace Yoon\YoonMvp\Domain\Aggregate;
 
 use Yoon\YoonMvp\AggregateRoot;
+use Yoon\YoonMvp\Domain\State\ErrorLog as ErrorLogState;
 use Ramsey\Uuid\Uuid;
 
 class ErrorLog extends AggregateRoot
 {
-    function __constructor(Uuid $id)
+
+    private $errorLogState;
+
+    function __construct(ErrorLogState $errorLogState)
     {
-        $this->setId($id);
+        parent::__construct($errorLogState);
     }
 
     /**
@@ -18,7 +22,7 @@ class ErrorLog extends AggregateRoot
      */
     final public function apply(Event $event):Promise 
     {
-
+        return new Promise();
     }
 }
 

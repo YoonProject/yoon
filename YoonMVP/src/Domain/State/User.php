@@ -5,7 +5,7 @@ namespace Yoon\YoonMvp\Domain\State;
 use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class UserState implements State
+class User implements State
 {
     public $id;
     public $createDate;
@@ -13,7 +13,7 @@ class UserState implements State
     public $yoonPublicKey;
     public $accountType;
 
-    function __constructor(
+    function __construct(
         int $id, 
         \DateTime $createDate, 
         string $name,

@@ -12,7 +12,7 @@ class MockRepository extends Repository
     
     private $store;
 
-    function __constructor() 
+    function __construct() 
     {
         $store = array();
     }
