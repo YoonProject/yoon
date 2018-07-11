@@ -17,7 +17,7 @@ abstract class MySqlRepository implements Repository {
         $this->repository = new \ByJG\MicroOrm\Repository($dataset, $mapper);
     }
 
-    public abstract function find($className, Uuid $uuid, $expectedVersion = null) : Entity;
+    public abstract function find(string $className, Uuid $uuid, $expectedVersion = null) : Entity;
 
     protected final function getUnderlyingRepository() : \ByJG\MicroOrm\Repository
     {

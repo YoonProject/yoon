@@ -6,11 +6,11 @@ use Yoon\YoonMvp\Domain\State\Upload as UploadState;
 use Yoon\YoonMvp\Domain\Entity\User;
 use Yoon\YoonMvp\Domain\Entity\File;
 use Yoon\YoonMvp\Domain\Event\FileStateChanged;
-use Yoon\YoonMvp\AggregateRoot;
+use Yoon\YoonMvp\ProcessManager;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class Upload extends AggregateRoot
+class Upload extends ProcessManager
 {
     private $uploadState;
     private $user;
@@ -18,18 +18,9 @@ class Upload extends AggregateRoot
 
     function __construct(UploadState $uploadState, User $user, File $file)
     {
-        parent::__construct($uploadState);
+        parent::__construct(array($user,$file), $this);
         $this->uploadState = $uploadState;
         $this->file = $file;
-    }
-
-    /**
-     * Applies the new state with the given event.
-     * @return void
-     */
-    final public function apply(Event $event):Promise 
-    {
-
     }
 }
 

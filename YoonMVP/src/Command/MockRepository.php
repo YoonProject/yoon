@@ -36,16 +36,23 @@ class MockRepository extends Repository
      *
      * @return AggregateRoot
      */
-    public function find($className, Uuid $id, $expectedVersion = null) : AggregateRoot
+    public function find(string $className, Uuid $id, $expectedVersion = null) : AggregateRoot
     {
         return $this->findAggregate($id);
     }
 
-    private function findAggregate(Uuid $id) : AggregateRoot
+    private function findAggregate(string $className, Uuid $id) : AggregateRoot
     {
         $aggregate = __::get($this->store, $id);
-        return $aggregate;
+        return $aggregate != null ? $aggregate : $this->aggregateFactory($className);
     }
+
+    private function aggregateFactory(string $class) { 
+        if ($class[0] != '\\') { 
+             $class = '\\' . __NAMESPACE__ . '\\' . $class; 
+        } 
+        return new $class(); 
+    } 
 }
 
 ?>

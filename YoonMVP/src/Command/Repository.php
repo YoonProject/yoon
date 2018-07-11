@@ -18,5 +18,7 @@ interface Repository
      *
      * @return AggregateRoot
      */
-    public function find($className, Uuid $id, $expectedVersion = null) : AggregateRoot;
+    public function find(string $className, Uuid $id, $expectedVersion = null) : AggregateRoot;
+
+        
 }

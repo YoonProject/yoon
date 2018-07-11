@@ -13,5 +13,5 @@ interface Repository
      *
      * @return Entity
      */
-    public function find($className, Uuid $uuid, $expectedVersion = null) : Entity;
+    public function find(string $className, Uuid $uuid, $expectedVersion = null) : Entity;
 }

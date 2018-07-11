@@ -18,17 +18,12 @@ abstract class AggregateRoot extends Entity
         $this->state = $state;
     }
 
-    final protected function setId(Uuid $uuid) : void
-    {
-        $this->id = $uuid;
-    }
-
     /**
      * @return Ramsey\Uuid\Uuid;
      */
     final public function getId() : Uuid
     { 
-        return $this->id;
+        return $this->state->id;
     }
 
     /**

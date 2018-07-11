@@ -3,6 +3,7 @@ namespace Yoon\YoonMvp;
 
 use Yoon\YoonMvp\Process; 
 use Yoon\YoonMvp\ProcessState; 
+use Yoon\YoonMvp\Domain\State\AdHoc;
 use Ramsey\Uuid\Uuid;
 use GuzzleHttp\Promise\Promise;
 use __\__;
@@ -13,9 +14,10 @@ class ProcessManager extends AggregateRoot
     private $attachedProcesses;
     private $originAggregate;
 
-    function __construct(AggregateRoot $originAggregate, array $processes)
+    function __construct(array $processes, AggregateRoot $originAggregate = null)
     {
-        parent::__construct($originAggregate);
+        parent::__construct($originAggregate != null ? $originAggregate->getState():new AdHoc());
+
         $this->attachedProcesses = $processes;
         $this->originAggregate = $originAggregate;
     }
@@ -42,7 +44,7 @@ class ProcessManager extends AggregateRoot
         $processChain = __::filter($this->attachedProcesses, function(Process $process) {
                 return $process->getProcessState() == ProcessState::Pending;
             });
-        $rootPromise = $this->originAggregate->apply($event);
+        $rootPromise = $this->originAggregate != null? $this->originAggregate->apply($event) : new Promise();
         $chainPromise = $rootPromise;
         foreach($processChain as $process)
         {
