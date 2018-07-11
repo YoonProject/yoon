@@ -1,11 +1,11 @@
 <?php
 namespace Yoon\YoonMvp\Test;
 
-use Yoon\YoonMvp\Domain\Command\MakeUploadCommand;
+use Yoon\YoonMvp\Domain\Command\MakeUpload;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-class UploadFileTest extends TestCase
+class UploadFileTest extends BaseTest
 {
     public $numErrors = 0;
 
@@ -24,13 +24,6 @@ class UploadFileTest extends TestCase
      */
     protected function setUp()
     {
-        $builder = new \DI\ContainerBuilder();
-        $builder->useAnnotations(true);
-        $builder->ignorePhpDocErrors(true);
-        $builder->addDefinitions('src/DependencyConfig.php');
-        $container = $builder->build();
-        $container->injectOn($this);
-
         if (file_exists(dirname(__FILE__) . '/testImage.jpg')) {
             try {
                 rmdir(dirname(__FILE__) . '/testImage.jpg');
@@ -57,13 +50,12 @@ class UploadFileTest extends TestCase
     {
         $expectedResult = '200';
         $id = new Uuid();
-        $fileName = '/testImage.jpg';
-        $hash = sodium_crypto_generichash($id);
-        $handler = MakeUploadCommandHandler::class.MakeUploadCommand::class;
+        $userId = new Uuid();
+        $fileName = 'testImage.jpg';
+        $handler = MakeUploadCommandHandler::class.MakeUpload::class;
         $commandHandler = $this->handler;
-        $command = new MakeUploadCommand($id, $hash, $fileName);
-
-
+        $command = new MakeUpload($id, $userId, '/', $fileName);
+        $commandHandler->getHandle()->resolve();
 
         $this->assertEquals($this->numErrors, 0);
     }

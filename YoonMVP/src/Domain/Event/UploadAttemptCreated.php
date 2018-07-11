@@ -7,23 +7,18 @@ use Ramsey\Uuid\Uuid;
 
 class UploadAttemptCreated extends Event
 {
+    private $userId;
+    private $fileName;
+    private $relativePath;
     private $id;
-    private $hash; 
+    private $hash;
 
-    function __construct()
+    function __construct(Uuid $id, Uuid $userId, string $relativePath, string $fileName)
     {
-        
-    }
-
-
-    /**
-     * Gets the event id.
-     * @return Rhumsaa\Uuid\Uuid
-     */
-
-    public function getId() : Uuid
-    {
-        return Uuid::uuid4();
+        $this->id = $id;
+        $this->userId = $userId;
+        $this->relativePath = $relativePath;
+        $this->fileName = $fileName;
     }
 
     /**
@@ -32,7 +27,36 @@ class UploadAttemptCreated extends Event
      */
     public function getHashSignedById() : string
     {
-        return sodium_crypto_generichash($this->getId());
+        return sodium_crypto_generichash(Event::class.$this->getId());
+    }
+
+    /**
+     * Gets the handler id.
+     * @return Rhumsaa\Uuid\Uuid
+     */
+
+    public function getId() : Uuid
+    {
+        return $this->id;
+    }
+
+    /**
+     * Gets the handler id.
+     * @return Rhumsaa\Uuid\Uuid
+     */
+
+    public function getUserId() : Uuid
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Gets the file name.
+     * @return string
+     */
+    public function getFileName() : string
+    {
+        $this->fileName;
     }
 }
 

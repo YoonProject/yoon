@@ -12,15 +12,9 @@ use Ramsey\Uuid\Uuid;
 
 class Upload extends ProcessManager
 {
-    private $uploadState;
-    private $user;
-    private $file;
-
     function __construct(UploadState $uploadState, User $user, File $file)
     {
         parent::__construct(array($user,$file), $this);
-        $this->uploadState = $uploadState;
-        $this->file = $file;
     }
 }
 

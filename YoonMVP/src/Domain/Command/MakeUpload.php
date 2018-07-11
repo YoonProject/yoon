@@ -11,13 +11,11 @@ class MakeUpload implements Command
     private $fileName;
     private $relativePath;
     private $id;
-    private $hash;
-
-    function __construct(Uuid $id, Uuid $userId, string $hash, string $relativePath, string $fileName)
+    
+    function __construct(Uuid $id, Uuid $userId, string $relativePath, string $fileName)
     {
         $this->id = $id;
         $this->userId = $userId;
-        $this->hash = $hash;
         $this->relativePath = $relativePath;
         $this->fileName = $fileName;
     }
@@ -33,6 +31,16 @@ class MakeUpload implements Command
     }
 
     /**
+     * Gets the message hash signed by the id.
+     * @return string
+     */
+    public function getHashSignedById() : string
+    {
+        return sodium_crypto_generichash(Command::class.$this->getId());
+    }
+
+
+    /**
      * Gets the handler id.
      * @return Rhumsaa\Uuid\Uuid
      */
@@ -42,21 +50,21 @@ class MakeUpload implements Command
         return $this->userId;
     }
 
-
-    /**
-     * Gets the message hash signed by the id.
-     * @return string
-     */
-    public function getHashSignedById() : string
-    {
-        return $this->hash;
-    }
-
     /**
      * Gets the file name.
      * @return string
      */
     public function getFileName() : string
+    {
+        $this->fileName;
+    }
+
+    
+    /**
+     * Gets the file relative path.
+     * @return string
+     */
+    public function getRelativePath() : string
     {
         $this->fileName;
     }
