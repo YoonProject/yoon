@@ -4,20 +4,24 @@ namespace Yoon\YoonMvp\Infrastructure\Database\Mapping;
 
 use Yoon\YoonMvp\Domain\State\UserState;
 
-class UserMap
+class UserMap extends \ByJG\MicroOrm\Mapper
 {
-    public static function Map()
+
+    function __construct()
     {
-        // Creating the mapping
-        $mapper = new \ByJG\MicroOrm\Mapper(
+        parent::__construct(
             UserState::class, // The full qualified name of the class
             'id', // The primary key field,
             'createdDate',
             'name'
         );
+    }
 
-        $mapper->addFieldMap('id', 'userid');
-        $mapper->addFieldMap('createdDate', 'registered');
-        $mapper->addFieldMap('name', 'email');
+    public function map() : UserMap
+    {
+        $this->addFieldMap('id', 'userid');
+        $this->addFieldMap('createdDate', 'registered');
+        $this->addFieldMap('name', 'email');
+        return $this;
     }
 }

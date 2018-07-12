@@ -60,7 +60,11 @@ class MakeUploadCommandHandler implements Handler
     private function constructHandle(MakeUpload $command) : Promise 
     {
         $upload = $this->findAggregate($command);
-        return $upload->apply(new UploadAttemptCreated());
+        $event = new UploadAttemptCreated($command->getId(), $command->getUserId(), 
+        $command->getRelativePath(), $command->getFileName());
+        return $upload->apply($event)->then(function () use ($event){
+            return $event;
+        });
     }
 
     private function findAggregate(MakeUpload $command) : Upload

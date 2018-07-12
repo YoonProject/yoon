@@ -1,6 +1,9 @@
 <?php
 
 namespace Yoon\YoonMvp;
+
+use GuzzleHttp\Promise\Promise;
+
 /**
  * Message bus handles all messages that were emitted by domain objects or commannd handlers.
  *
@@ -17,7 +20,7 @@ interface MessageBus
      * @param Event $message
      * @return void
      */
-    public function publish(Message $message);
+    public function publish(Message $message) : Promise;
 
     /**
      * Registeres a handler within the message bus.
@@ -25,7 +28,7 @@ interface MessageBus
      * @param Event $handler
      * @return void
      */
-    public function register(Handler $handler);
+    public function register(Handler $handler) : void;
 }
 
 ?>

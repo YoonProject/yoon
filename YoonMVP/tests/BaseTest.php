@@ -33,7 +33,11 @@ abstract class BaseTest extends TestCase
     }
 
     /**
-     * Deleting of test images. No try/catch here as it would fire on setup
+     * Basic tear down.
      */
-    protected abstract function tearDown();
+    protected function tearDown()
+    {
+        $this->container = null;
+        parent::tearDown();   
+    }
 }

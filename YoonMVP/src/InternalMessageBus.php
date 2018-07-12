@@ -5,6 +5,7 @@ use __\__;
 namespace Yoon\YoonMvp;
 
 use Yoon\YoonMvp\ErrorLog\ErrorLogException;
+use GuzzleHttp\Promise\Promise;
 
 
 /**
@@ -24,13 +25,16 @@ class InternalMessageBus implements MessageBus
     /**
      * Publish a message to the bus.
      *
-     * @param Event $message
-     * @return void
+     * @param Message $message
+     * @return Promise
      */
-    public function publish(Message $message) : void
+    public function publish(Message $message) : Promise
     {
         $handler = $this->findHandler(get_class($message));
-        $handler->getHandle($message)->$promise->then(null, function ($reason) {
+        $handle = $handler->getHandle($message);
+        $handle->then(function ($message){
+            return $this->publish();
+        })->then(null, function ($reason) {
             throw new ErrorLogException($reason);
         })->resolve();
     }

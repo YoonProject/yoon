@@ -11,19 +11,20 @@ use \ByJG\AnyDataset\Factory;
 
 abstract class MySqlRepository implements Repository {
 
-    private $repository;
+    private $dataset;
+    private $containerInterface;
 
-    function __construct(Factory $dataset, Mapper $mapper) {
-        $this->repository = new \ByJG\MicroOrm\Repository($dataset, $mapper);
+    function __construct(Factory $dataset) {
+        $this->dataset = $dataset;
     }
 
     public abstract function find(string $className, Uuid $uuid, $expectedVersion = null) : AggregateRoot;
 
     public abstract function save(AggregateRoot $aggregate);
 
-    protected final function getUnderlyingRepository() : \ByJG\MicroOrm\Repository
+    protected final function getUnderlyingRepository(string $className) : \ByJG\MicroOrm\Repository
     {
-        return $this->repository;
+        return new \ByJG\MicroOrm\Repository($this->dataset, $this->containerInterface->get($className));
     }
 }
 

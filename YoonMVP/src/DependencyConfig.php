@@ -2,8 +2,10 @@
 
 namespace Yoon\YoonMvp;
 
+use Yoon\YoonPublic\ConfigExtractor;
 use Yoon\YoonMvp\Handler;
-use Yoon\YoonMvp\RepositoryPipe;
+use Yoon\YoonMvp\Configuration;
+use Yoon\YoonMvp\ChainRepository;
 use Yoon\YoonMvp\MessageBus;
 use Yoon\YoonMvp\InternalMessageBus;
 use Yoon\YoonMvp\Command\Handler\MakeUploadCommandHandler;
@@ -18,12 +20,12 @@ return [
         return array($c->get(\Yoon\YoonMvp\Command\Repository::class));
     },
     RepositoryPipe::class => function (ContainerInterface $c) {
-        return new RepositoryPipe($c->get('repositories'));
+        return new ChainRepository($c->get('repositories'));
     },
     Handler::class.MakeUpload::class => function (ContainerInterface $c) {
         return new MakeUploadCommandHandler($c->get(MessageBus::class), $c->get(RepositoryPipe::class));
     },
-    Handler::class.MakeUpload::class => \DI\autowire(MakeUploadCommandHandler::class)->constructor()
+    Configuration::class => ConfigExtractor::class
 ];
 
 
