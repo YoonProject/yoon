@@ -9,18 +9,28 @@ use Yoon\YoonMvp\Infrastructure\Query\MySqlRepository;
 use ByJG\MicroOrm\Mapper;
 use ByJG\AnyDataset\Factory;
 use Ramsey\Uuid\Uuid;
-
+use Psr\Container\ContainerInterface;
 
 class QueryRepository extends MySqlRepository {
 
-    function __construct(Configuration $configuration) {
+    //same here
+    function __construct(ContainerInterface $containerInterface, Configuration $configuration) {
         $dataset = new ByJG\AnyDataset\Factory($configuration->getDatabaseConnectionString('read'));
-        parent::__construct($dataset);
+        parent::__construct($containerInterface, $dataset);
     }
 
     public function find($className, Uuid $uuid, $expectedVersion = null) : Entity
     {
-        return $this->getUnderlyingRepository($className)->get($uuid->getInteger());
+        $entity = parent::$containerInterface->get($className);
+        $state = $this->getUnderlyingRepository($className)->get($uuid->getInteger());
+        return $this->mapEntity($entity, $state);
+    }
+
+    //replace with automapping third component
+
+    private function mapEntity(Entity $entity, State $state) : Entity
+    {
+        return $entity->constructFromState($state);
     }
 }
 
