@@ -25,4 +25,13 @@ interface Entity
      * @return string
      */
     public function getState(): State;
+
+
+    /**
+     * Constructs an entity by it's state.                                                            
+     *                                                                                                      
+     * @param State $state
+     * @return void
+     */
+    public function constructFromState(State $state) : Entity;
 }

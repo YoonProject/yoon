@@ -6,7 +6,7 @@ namespace Yoon\YoonMvp;
 
 use Yoon\YoonMvp\ErrorLog\ErrorLogException;
 use GuzzleHttp\Promise\Promise;
-
+use GuzzleHttp\Promise\FulfilledPromise;
 
 /**
  * Message bus handles all messages that were emitted by domain objects or commannd handlers.
@@ -32,11 +32,13 @@ class InternalMessageBus implements MessageBus
     {
         $handler = $this->findHandler(get_class($message));
         $handle = $handler->getHandle($message);
-        $handle->then(function ($message){
-            return $this->publish();
+        $handle->then(function ($inneMessage){
+            return $this->publish($innerMessage);
+        })->otherwise(function() use($message){
+            return new FulfilledPromise($message);
         })->then(null, function ($reason) {
             throw new ErrorLogException($reason);
-        })->resolve();
+        })->resolve($message);
     }
 
 
