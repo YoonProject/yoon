@@ -13,10 +13,13 @@ use Psr\Container\ContainerInterface;
 abstract class MySqlRepository implements Repository {
 
     private $dataset;
-    private $containerInterface;
+    protected $containerInterface;
 
-    function __construct(Factory $dataset) {
+    //injecting the container interface here is not quite an anti-pattern, 
+    //because the container itself can be changed
+    function __construct(ContainerInterface $containerInterface, Factory $dataset) {
         $this->dataset = $dataset;
+        $this->containerInterface = $containerInterface;
     }
 
     public abstract function find(string $className, Uuid $uuid, $expectedVersion = null) : Entity;

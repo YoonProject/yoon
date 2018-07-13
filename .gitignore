@@ -15,6 +15,6 @@ YoonMVP/src/Infrastructure/Database/Mapping/dashboard.inc.php
 YoonMVP/src/Infrastructure/Database/Mapping/helpersql.inc.php
 YoonMVP/src/Infrastructure/Database/Mapping/prepresale.inc.php
 YoonMVP/src/Infrastructure/Database/Mapping/presale.inc.php
-YoonMVP/src/Infrastructure/Database/Mapping/user.inc.php
+YoonMVP/src/Infrastructure/Database/Mapping/user.inc.ph
 # vscode
 .vscode
