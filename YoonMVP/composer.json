@@ -37,7 +37,10 @@
     "autoload-dev": {
         "psr-4": {
             "PHPUnit\\": "vendor/phpunit/phpunit/src/",
+            "Yoon\\YoonPublic\\": "public/",
             "Yoon\\YoonMvp\\": "src/",
+            "ZuluCrypto\\StellarSdk\\" : "stellar-api/src",
+            "Swagger\\Client\\" : "chaintpoint-api/SwaggerClient-php/lib/",
             "Yoon\\YoonMvp\\Test\\": "tests/"
         }
     },
