@@ -3,6 +3,7 @@
     "type": "standard",
     "description": "The yoon mvp project.",
     "homepage": "https://yoon.online",
+    
     "license": "MIT",
     "require": {
         "psr/log": "^1.0.2",
