@@ -5,28 +5,23 @@ namespace Yoon\YoonMvp\Domain\State;
 use Yoon\YoonMvp\State;
 use Ramsey\Uuid\Uuid;
 
-class File implements State
+class FileMetaData implements State
 {
-    public $id;
-    public $createDate;
-    public $uri;
-    public $yoonFileMerkleRoot;
-    public $fileMetaDataState;
+    public $fileType;
+    public $owner;
 
     function __construct(
         Uuid $id, 
+        Uuid $metaDataId, 
         \DateTime $createDate, 
-        string $uri, 
-        string $yoonFileMerkleRoot,
-        FileMetaData $fileMetaDataState)
-    {
-        $this->id = $id;
-        $this->createDate = $createDate;
-        $this->uri = $uri;
-        $this->yoonFileMerkleRoot = $yoonFileMerkleRoot;
+        string $description, 
+        string $name,
+        string $fileType,
+        string $owner)
+    {   
+        parent::__construct($id, $metaDataId, $createDate, $description, $name, File::class);
         $this->fileType = $fileType;
-        $this->fileMetaDataState = $fileMetaDataState;
-
+        $this->owner = $owner;
     }
 
     public function getId() : Uuid
