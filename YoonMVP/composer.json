@@ -29,6 +29,8 @@
         "psr-4": {
             "Yoon\\YoonPublic\\": "public/",
             "Yoon\\YoonMvp\\": "src/",
+            "ZuluCrypto\\StellarSdk\\" : "stellar-api/src",
+            "Swagger\\Client\\" : "chaintpoint-api/SwaggerClient-php/lib/",
             "__\\": "vendor/maciejczyzewski/bottomline/src/"
         }
     },
