@@ -8,66 +8,66 @@ use Silex\Application;
 $app = new Silex\Application();
 
 
-$app->DELETE('/Yoon/Api/1.0.0/flag/claim/{claimId}', function(Application $app, Request $request, $claimId) {
-            return new Response('How about implementing deleteclaim as a DELETE method ?');
+$app->DELETE('/Yoon/Api/1.0.0/flag/Claim/{claimId}', function(Application $app, Request $request, $ClaimId) {
+            return new Response('How about implementing deleteClaim as a DELETE method ?');
             });
 
 
-$app->GET('/Yoon/Api/1.0.0/flag/claim/{claimId}', function(Application $app, Request $request, $claimId) {
-            return new Response('How about implementing getclaimById as a GET method ?');
+$app->GET('/Yoon/Api/1.0.0/flag/Claim/{claimId}', function(Application $app, Request $request, $ClaimId) {
+            return new Response('How about implementing getClaimById as a GET method ?');
             });
 
 
-$app->GET('/Yoon/Api/1.0.0/flag/claims', function(Application $app, Request $request) {
-            return new Response('How about implementing getclaims as a GET method ?');
+$app->GET('/Yoon/Api/1.0.0/flag/Claims', function(Application $app, Request $request) {
+            return new Response('How about implementing getClaims as a GET method ?');
             });
 
 
-$app->POST('/Yoon/Api/1.0.0/flag/claim', function(Application $app, Request $request) {
-            return new Response('How about implementing placeclaim as a POST method ?');
+$app->POST('/Yoon/Api/1.0.0/flag/Claim', function(Application $app, Request $request) {
+            return new Response('How about implementing placeClaim as a POST method ?');
             });
 
 
-$app->POST('/Yoon/Api/1.0.0/upload', function(Application $app, Request $request) {
-            return new Response('How about implementing addupload as a POST method ?');
+$app->POST('/Yoon/Api/1.0.0/Upload', function(Application $app, Request $request) {
+            return new Response('How about implementing addUpload as a POST method ?');
             });
 
 
-$app->DELETE('/Yoon/Api/1.0.0/upload/{uploadId}', function(Application $app, Request $request, $uploadId) {
-            return new Response('How about implementing deleteupload as a DELETE method ?');
+$app->DELETE('/Yoon/Api/1.0.0/Upload/{uploadId}', function(Application $app, Request $request, $UploadId) {
+            return new Response('How about implementing deleteUpload as a DELETE method ?');
             });
 
 
-$app->GET('/Yoon/Api/1.0.0/upload/findByStatus', function(Application $app, Request $request) {
+$app->GET('/Yoon/Api/1.0.0/Upload/findByStatus', function(Application $app, Request $request) {
             $status = $request->get('status');
-            return new Response('How about implementing finduploadsByStatus as a GET method ?');
+            return new Response('How about implementing findUploadsByStatus as a GET method ?');
             });
 
 
-$app->GET('/Yoon/Api/1.0.0/upload/findByTags', function(Application $app, Request $request) {
+$app->GET('/Yoon/Api/1.0.0/Upload/findByTags', function(Application $app, Request $request) {
             $tags = $request->get('tags');
-            return new Response('How about implementing finduploadsByTags as a GET method ?');
+            return new Response('How about implementing findUploadsByTags as a GET method ?');
             });
 
 
-$app->GET('/Yoon/Api/1.0.0/upload/{uploadId}', function(Application $app, Request $request, $uploadId) {
-            return new Response('How about implementing getuploadById as a GET method ?');
+$app->GET('/Yoon/Api/1.0.0/Upload/{uploadId}', function(Application $app, Request $request, $UploadId) {
+            return new Response('How about implementing getUploadById as a GET method ?');
             });
 
 
-$app->PUT('/Yoon/Api/1.0.0/upload', function(Application $app, Request $request) {
-            return new Response('How about implementing updateupload as a PUT method ?');
+$app->PUT('/Yoon/Api/1.0.0/Upload', function(Application $app, Request $request) {
+            return new Response('How about implementing updateUpload as a PUT method ?');
             });
 
 
-$app->POST('/Yoon/Api/1.0.0/upload/{uploadId}', function(Application $app, Request $request, $uploadId) {
+$app->POST('/Yoon/Api/1.0.0/Upload/{uploadId}', function(Application $app, Request $request, $UploadId) {
             $name = $request->get('name');
             $status = $request->get('status');
-            return new Response('How about implementing updateuploadWithForm as a POST method ?');
+            return new Response('How about implementing updateUploadWithForm as a POST method ?');
             });
 
 
-$app->POST('/Yoon/Api/1.0.0/upload/{uploadId}/uploadImage', function(Application $app, Request $request, $uploadId) {
+$app->POST('/Yoon/Api/1.0.0/Upload/{uploadId}/UploadImage', function(Application $app, Request $request, $UploadId) {
             $additional_metadata = $request->get('additional_metadata');
             $file = $request->get('file');
             return new Response('How about implementing uploadFile as a POST method ?');
