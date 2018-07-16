@@ -1,4 +1,4 @@
-# Swagger\Client\ConfigApi
+# Chainpoint\Client\ConfigApi
 
 All URIs are relative to *http://35.230.179.171*
 
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **configGet**
-> \Swagger\Client\Model\GetConfigResponse[] configGet()
+> \Chainpoint\Client\Model\GetConfigResponse[] configGet()
 
 Retrieves the configuration information for the Node
 
@@ -19,7 +19,7 @@ Retrieves the configuration information for the Node
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Swagger\Client\Api\ConfigApi(
+$apiInstance = new Chainpoint\Client\Api\ConfigApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -39,7 +39,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\GetConfigResponse[]**](../Model/GetConfigResponse.md)
+[**\Chainpoint\Client\Model\GetConfigResponse[]**](../Model/GetConfigResponse.md)
 
 ### Authorization
 

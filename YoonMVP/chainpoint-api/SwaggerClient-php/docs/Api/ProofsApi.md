@@ -1,4 +1,4 @@
-# Swagger\Client\ProofsApi
+# Chainpoint\Client\ProofsApi
 
 All URIs are relative to *http://35.230.179.171*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **proofsGet**
-> \Swagger\Client\Model\GetProofsResponse[] proofsGet($hashids)
+> \Chainpoint\Client\Model\GetProofsResponse[] proofsGet($hashids)
 
 Retrieves one or more proofs by hashids supplied in header
 
@@ -20,7 +20,7 @@ Retrieves one or more proofs by hashids supplied in header
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Swagger\Client\Api\ProofsApi(
+$apiInstance = new Chainpoint\Client\Api\ProofsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\GetProofsResponse[]**](../Model/GetProofsResponse.md)
+[**\Chainpoint\Client\Model\GetProofsResponse[]**](../Model/GetProofsResponse.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **proofsHashIdNodeGet**
-> \Swagger\Client\Model\GetProofsResponse[] proofsHashIdNodeGet($hash_id_node)
+> \Chainpoint\Client\Model\GetProofsResponse[] proofsHashIdNodeGet($hash_id_node)
 
 Retrieves a proof by hash_id_node
 
@@ -69,7 +69,7 @@ Retrieves a proof by hash_id_node
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Swagger\Client\Api\ProofsApi(
+$apiInstance = new Chainpoint\Client\Api\ProofsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\GetProofsResponse[]**](../Model/GetProofsResponse.md)
+[**\Chainpoint\Client\Model\GetProofsResponse[]**](../Model/GetProofsResponse.md)
 
 ### Authorization
 

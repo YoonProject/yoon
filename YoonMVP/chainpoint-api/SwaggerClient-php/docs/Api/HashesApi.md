@@ -1,4 +1,4 @@
-# Swagger\Client\HashesApi
+# Chainpoint\Client\HashesApi
 
 All URIs are relative to *http://35.230.179.171*
 
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **hashesPost**
-> \Swagger\Client\Model\PostHashResponse hashesPost($body)
+> \Chainpoint\Client\Model\PostHashResponse hashesPost($body)
 
 Submit one or more hashes for anchoring
 
@@ -19,12 +19,12 @@ Submit one or more hashes for anchoring
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Swagger\Client\Api\HashesApi(
+$apiInstance = new Chainpoint\Client\Api\HashesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Swagger\Client\Model\PostHashRequest(); // \Swagger\Client\Model\PostHashRequest | An array of hex string hashes to be anchored
+$body = new \Chainpoint\Client\Model\PostHashRequest(); // \Chainpoint\Client\Model\PostHashRequest | An array of hex string hashes to be anchored
 
 try {
     $result = $apiInstance->hashesPost($body);
@@ -39,11 +39,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Swagger\Client\Model\PostHashRequest**](../Model/PostHashRequest.md)| An array of hex string hashes to be anchored |
+ **body** | [**\Chainpoint\Client\Model\PostHashRequest**](../Model/PostHashRequest.md)| An array of hex string hashes to be anchored |
 
 ### Return type
 
-[**\Swagger\Client\Model\PostHashResponse**](../Model/PostHashResponse.md)
+[**\Chainpoint\Client\Model\PostHashResponse**](../Model/PostHashResponse.md)
 
 ### Authorization
 

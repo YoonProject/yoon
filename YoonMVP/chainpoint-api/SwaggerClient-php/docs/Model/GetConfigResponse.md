@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **post_hashes_max** | **int** |  | [optional] 
 **post_verify_proofs_max** | **int** |  | [optional] 
 **time** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**calendar** | [**\Swagger\Client\Model\GetConfigResponseCalendar**](GetConfigResponseCalendar.md) |  | [optional] 
+**calendar** | [**\Chainpoint\Client\Model\GetConfigResponseCalendar**](GetConfigResponseCalendar.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

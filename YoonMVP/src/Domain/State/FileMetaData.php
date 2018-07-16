@@ -3,46 +3,42 @@
 namespace Yoon\YoonMvp\Domain\State;
 
 use Yoon\YoonMvp\State;
+use Yoon\YoonMvp\Domain\State\MetaData;
 use Ramsey\Uuid\Uuid;
 
-class FileMetaData implements State
+class FileMetaData extends MetaData
 {
     public $fileType;
-    public $owner;
+    public $ownerId;
+    public $securitySeverity;
 
     function __construct(
         Uuid $id, 
-        Uuid $metaDataId, 
+        Uuid $ownerId,
+        Uuid $metaDataId,
+        int $securitySeverity, 
+        string $fileType,
         \DateTime $createDate, 
         string $description, 
-        string $name,
-        string $fileType,
-        string $owner)
+        string $name)
     {   
-        parent::__construct($id, $metaDataId, $createDate, $description, $name, File::class);
         $this->fileType = $fileType;
-        $this->owner = $owner;
+        $this->ownerId = $ownerId;
+        $this->securitySeverity = $securitySeverity;
+        parent::__construct($id, $metaDataId, $createDate, $description, $name, File::class);
     }
 
     public function getId() : Uuid
     {
         return $this->id;
     }
-    public function getFileName() : string
+    public function getOwnerId() : Uuid
     {
-        return $this->fileName;
+        return $this->ownerId;
     }
-    public function getCreatedDate() : \DateTime
+    public function getSecuritySeverity() : int
     {
-        return $this->createdDate;
-    }
-    public function getRelativePath() : string
-    {
-        return $this->relativePath;
-    }
-    public function getYoonFileMerkleRoot() : string
-    {
-        return $this->yoonFileMerkleRoot;
+        return $this->securitySeverity;
     }
     public function getFileType() : string
     {

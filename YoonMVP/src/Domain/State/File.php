@@ -33,25 +33,21 @@ class File implements State
     {
         return $this->id;
     }
-    public function getFileName() : string
-    {
-        return $this->fileName;
-    }
     public function getCreatedDate() : \DateTime
     {
         return $this->createdDate;
     }
-    public function getRelativePath() : string
+    public function getUrl() : string
     {
-        return $this->relativePath;
+        return $this->url;
     }
     public function getYoonFileMerkleRoot() : string
     {
         return $this->yoonFileMerkleRoot;
     }
-    public function getFileType() : string
+    public function getFileMetaData() : FileMetaData
     {
-        return $this->fileType;
+        return $this->fileMetaDataState;
     }
 }
 
