@@ -11,12 +11,14 @@ class FileMetaData extends MetaData
     public $fileType;
     public $ownerId;
     public $securitySeverity;
+    public $fileOperationTypes;
 
     function __construct(
         Uuid $id, 
         Uuid $ownerId,
         Uuid $metaDataId,
-        int $securitySeverity, 
+        int $securitySeverity,
+        int $fileOperationTypes, 
         string $fileType,
         \DateTime $createDate, 
         string $description, 
@@ -25,6 +27,7 @@ class FileMetaData extends MetaData
         $this->fileType = $fileType;
         $this->ownerId = $ownerId;
         $this->securitySeverity = $securitySeverity;
+        $this->fileOperationTypes = $fileOperationTypes;
         parent::__construct($id, $metaDataId, $createDate, $description, $name, File::class);
     }
 
@@ -39,6 +42,10 @@ class FileMetaData extends MetaData
     public function getSecuritySeverity() : int
     {
         return $this->securitySeverity;
+    }
+    public function getOperationTypes() : int
+    {
+        return $this->fileOperationTypes;
     }
     public function getFileType() : string
     {

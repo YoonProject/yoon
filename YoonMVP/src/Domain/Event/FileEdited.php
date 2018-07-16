@@ -5,7 +5,7 @@ namespace Yoon\YoonMvp\Domain\Event;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class FileChanged extends Event
+class FileEdited extends Event
 {
     private $id;
     private $hash; 

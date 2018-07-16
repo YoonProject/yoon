@@ -6,6 +6,9 @@ YoonMVP/public/SwaggerServer/vendor/
 YoonMVP/public/SwaggerServer/vendor/*
 YoonMVP/vendor/*
 YoonMVP/stellar-api/*
+YoonMVP/chainpoint-api/SwaggerClient-php/composer.lock
+YoonMVP/public/SwaggerServer/composer.lock
+YoonMVP/composer.lock
 # public
 YoonMVP/public/config_neu_TEST.inc.php
 YoonMVP/public/config_neu.inc.php

@@ -7,17 +7,24 @@ use Ramsey\Uuid\Uuid;
 
 class EditFile implements Command
 {
-    private $userId;
-    private $fileName;
-    private $relativePath;
     private $id;
+    private $oldUserId;
+    private $oldFileName;
+    private $oldUri;
+    private $newFileName;
+    private $newUri;
+
     
-    function __construct(Uuid $id, Uuid $userId, string $relativePath, string $fileName)
+    function __construct(Uuid $oldUserId, Uuid $newUserId, string $oldUri, string $oldFileName, string $newUri, string $newFileName)
     {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->relativePath = $relativePath;
-        $this->fileName = $fileName;
+        $this->id = Uuid::uuid4();
+
+        $this->oldUserId = $oldUserId;
+        $this->newUserId = $newUserId;
+        $this->oldUri = $oldUri;
+        $this->oldFileName = $oldFileName;
+        $this->newUri = $newUri;
+        $this->newFileName = $newFileName;
     }
 
     /**
@@ -41,32 +48,60 @@ class EditFile implements Command
 
 
     /**
-     * Gets the handler id.
+     * Gets the old user id.
      * @return Rhumsaa\Uuid\Uuid
      */
 
-    public function getUserId() : Uuid
+    public function getOldUserId() : Uuid
     {
-        return $this->userId;
+        return $this->oldUserId;
     }
 
     /**
-     * Gets the file name.
-     * @return string
+     * Gets the new user id.
+     * @return Rhumsaa\Uuid\Uuid
      */
-    public function getFileName() : string
+
+    public function getNewUserId() : Uuid
     {
-        $this->fileName;
+        return $this->newUserId;
     }
 
+
+    /**
+     * Gets the old file name.
+     * @return string
+     */
+    public function getOldFileName() : string
+    {
+        $this->oldFileName;
+    }
     
     /**
-     * Gets the file relative path.
+     * Gets the new file name.
      * @return string
      */
-    public function getRelativePath() : string
+    public function getNewFileName() : string
     {
-        $this->fileName;
+        $this->newFileName;
+    }
+
+    /**
+     * Gets the old file uri.
+     * @return string
+     */
+    public function getOldUri() : string
+    {
+        $this->oldUri;
+    }
+
+    /**
+     * Gets the old file uri.
+     * @return string
+     */
+    public function getNewUri() : string
+    {
+        $this->oldUri;
     }
 }
 

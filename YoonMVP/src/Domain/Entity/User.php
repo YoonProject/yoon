@@ -6,33 +6,11 @@ use Yoon\YoonMvp\Entity;
 use Yoon\YoonMvp\Domain\State\User as UserState;
 use Ramsey\Uuid\Uuid;
 
-class User extends Entity
+class User extends EntityRoot
 {
-    private $userState;
-
-
     function __construct(UserState $userState)
     {
-        $this->userState = $userState;
-    }
-
-    /**
-     * Gets the entity id.
-     * @return Rhumsaa\Uuid\Uuid
-     */
-    public function getId() : Uuid
-    {
-        return $this->userState->getId();
-    }
-
-
-    /**
-     * Gets the entity hash signed by the id.
-     * @return string
-     */
-    public function getHashSignedById(): string
-    {
-        return sodium_crypto_generichash($this->getId());
+        parent::__constrcut($userState);
     }
 
     /**
@@ -69,15 +47,6 @@ class User extends Entity
     final public function getBlockchainType():string 
     {
         return $this->userState->getBlockchainType();
-    }
-
-    /**
-     * Gets the entity hash signed by the id.
-     * @return string
-     */
-    public function getState(): State 
-    {
-        return $this->userState;
     }
 }
 

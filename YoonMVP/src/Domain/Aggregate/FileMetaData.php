@@ -2,13 +2,13 @@
 
 namespace Yoon\YoonMvp\Domain\Aggregate;
 
-use Yoon\YoonMvp\Domain\Event\FileEdited;
+use Yoon\YoonMvp\Domain\Event\FileChanged;
 use Yoon\YoonMvp\Domain\State\File as FileState;
 use Yoon\YoonMvp\Process;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class File extends Process
+class FileMetaData extends Process
 {
     private $fileState;
 
@@ -23,7 +23,7 @@ class File extends Process
      */
     final public function apply(Event $event):Promise 
     {
-        if(get_class($event) == FileEdited::class) 
+        if(get_class($event) == FileChanged::class) 
         {
             return new Promise();
         }

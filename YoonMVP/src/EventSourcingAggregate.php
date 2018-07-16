@@ -5,6 +5,9 @@ use Yoon\YoonMvp\EventStore\EventStream;
 use Yoon\YoonMvp\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 
+/**
+* Abtract class for isolating the event sourcing feature from the general architecture.
+*/
 abstract class EventSourcingAggregate extends AggregateRoot
 {
     /**
