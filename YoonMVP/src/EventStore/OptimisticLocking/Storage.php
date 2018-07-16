@@ -1,6 +1,6 @@
 <?php
 
-namespace LiteCQRS\EventStore\OptimisticLocking;
+namespace Yoon\YoonMvp\EventStore\OptimisticLocking;
 
 interface Storage
 {
@@ -8,7 +8,7 @@ interface Storage
      * Load StreamData from the persistence storage layer.
      *
      * @param string $id
-     * @return \LiteCQRS\EventStore\OptimisticLocking\StreamData
+     * @return Yoon\YoonMvp\EventStore\OptimisticLocking\StreamData
      */
     public function load($id);
 

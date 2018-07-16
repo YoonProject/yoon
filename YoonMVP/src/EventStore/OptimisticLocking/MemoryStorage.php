@@ -1,8 +1,8 @@
 <?php
 
-namespace LiteCQRS\EventStore\OptimisticLocking;
+namespace Yoon\YoonMvp\EventStore\OptimisticLocking;
 
-use LiteCQRS\EventStore\ConcurrencyException;
+use Yoon\YoonMvp\EventStore\ConcurrencyException;
 
 class MemoryStorage implements Storage
 {

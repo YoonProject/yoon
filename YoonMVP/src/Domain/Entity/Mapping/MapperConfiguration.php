@@ -25,13 +25,13 @@ class MapperConfiguration extends AutoMapperConfig {
     function __construct()
     {
         parent::__construct();
-        //example, change later
+
         $this->registerMapping(FileState::class, FileEntity::class)
         ->beConstructedUsing(function (FileState $source): FileEntity {
             return new FileEntity($source);
         });
         $this->registerMapping(UserState::class, UserEntity::class)
-        ->beConstructedUsing(function (FileState $source): FileEntity {
+        ->beConstructedUsing(function (UserState $source): UserEntity {
             return new UserEntity($source);
         });
     }

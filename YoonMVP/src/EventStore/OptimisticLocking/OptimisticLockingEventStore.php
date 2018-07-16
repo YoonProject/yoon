@@ -1,13 +1,13 @@
 <?php
 
-namespace LiteCQRS\EventStore\OptimisticLocking;
+namespace Yoon\YoonMvp\EventStore\OptimisticLocking;
 
 use Rhumsaa\Uuid\Uuid;
-use LiteCQRS\EventStore\EventStream;
-use LiteCQRS\EventStore\Transaction;
-use LiteCQRS\EventStore\EventStreamNotFoundException;
-use LiteCQRS\EventStore\EventStore;
-use LiteCQRS\Serializer\Serializer;
+use Yoon\YoonMvp\EventStore\EventStream;
+use Yoon\YoonMvp\EventStore\Transaction;
+use Yoon\YoonMvp\EventStore\EventStreamNotFoundException;
+use Yoon\YoonMvp\EventStore\EventStore;
+use Yoon\YoonMvp\Serializer\Serializer;
 
 class OptimisticLockingEventStore implements EventStore
 {

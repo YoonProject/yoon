@@ -1,6 +1,6 @@
 <?php
 
-namespace LiteCQRS\EventStore\OptimisticLocking;
+namespace Yoon\YoonMvp\EventStore\OptimisticLocking;
 
 class StreamData
 {

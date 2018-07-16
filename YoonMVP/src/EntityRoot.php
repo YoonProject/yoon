@@ -26,7 +26,7 @@ abstract class EntityRoot extends Entity
      */
     public function getHashSignedById(): string
     {
-        return sodium_crypto_generichash($this->getId());
+        return sodium_crypto_generichash(get_class($this).$this->getId());
     }
     /**
      * Gets the entity hash signed by the id.

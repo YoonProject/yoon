@@ -1,8 +1,8 @@
 <?php
 
-namespace LiteCQRS\EventStore;
+namespace Yoon\YoonMvp\EventStore;
 
-use Yoon\YoonMvpp\Exception\RuntimeException;
+use Yoon\YoonMvp\Exception\RuntimeException;
 
 class ConcurrencyException extends RuntimeException
 {

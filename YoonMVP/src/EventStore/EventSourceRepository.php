@@ -3,7 +3,7 @@
 namespace Yoon\YoonMvp\EventStore;
 
 use Yoon\YoonMvp\MessageBus;
-use Yoon\YoonMvp\AggregateRoot;
+use Yoon\YoonMvp\EventSourcingAggregate;
 use Yoon\YoonMvp\Command\Repository;
 use Yoon\YoonMvp\AggregateRootNotFoundException;
 
@@ -12,19 +12,19 @@ use Rhumsaa\Uuid\Uuid;
 class EventSourceRepository implements Repository
 {
     private $eventStore;
-    private $eventBus;
+    private $messageBus;
     private $streams = array();
 
-    public function __construct(EventStore $eventStore, MessageBus $eventBus)
+    public function __construct(EventStore $eventStore, MessageBus $messageBus)
     {
         $this->eventStore = $eventStore;
-        $this->eventBus = $eventBus;
+        $this->messageBus = $messageBus;
     }
 
     /**
-     * @return AggregateRoot
+     * @return EventSourcingAggregate
      */
-    public function find($className, Uuid $uuid, $expectedVersion = null) : AggregateRoot
+    public function find($className, Uuid $uuid, $expectedVersion = null) : EventSourcingAggregate
     {
         try {
             $eventStream = $this->eventStore->find($uuid);
@@ -47,7 +47,7 @@ class EventSourceRepository implements Repository
         $reflClass = new \ReflectionClass($aggregateRootClass);
 
         $aggregateRoot = $reflClass->newInstanceWithoutConstructor();
-        $aggregateRoot->loadFromEventStream($eventStream);
+        $aggregateRoot->loadFromEventStream($eventStream)->resolve();
 
         return $aggregateRoot;
     }
@@ -55,7 +55,7 @@ class EventSourceRepository implements Repository
     /**
      * @return void
      */
-    public function save(AggregateRoot $object) : void
+    public function save(EventSourcingAggregate $object) : void
     {
         $id = (string)$object->getId();
 
@@ -67,12 +67,12 @@ class EventSourceRepository implements Repository
         }
 
         $eventStream = $this->streams[$id];
-        $eventStream->addEvents($object->pullDomainEvents());
+        $eventStream->addEvents($object->popAllEvents());
 
         $transaction = $this->eventStore->commit($eventStream);
 
         foreach ($transaction->getCommittedEvents() as $event) {
-            $event->setAggregateId($object->getId());
+            $event->setId($object->getId());
             $this->eventBus->publish($event);
         }
     }

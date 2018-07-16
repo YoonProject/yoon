@@ -22,7 +22,6 @@ class UserMetaData extends MetaData
         \DateTime $createDate, 
         string $description, 
         string $name,
-        string $fileType,
         string $ipAddress,
         string $userAgent,
         string $device,
@@ -31,33 +30,41 @@ class UserMetaData extends MetaData
         float $latitude)
     {   
         parent::__construct($id, $metaDataId, $createDate, $description, $name, User::class);
-        $this->fileType = $fileType;
-        $this->owner = $owner;
+        $this->ipAddress = $ipAddress;
+        $this->userAgent = $userAgent;
+        $this->device = $device;
+        $this->countryCode = $countryCode;
+        $this->longitude = $longitude;
+        $this->latitude = $latitude;
     }
 
     public function getId() : Uuid
     {
         return $this->id;
     }
-    public function getFileName() : string
+    public function getIpAddress() : string
     {
-        return $this->fileName;
+        return $this->ipAddress;
     }
-    public function getCreatedDate() : \DateTime
+    public function getUserAgent() : \DateTime
     {
-        return $this->createdDate;
+        return $this->userAgent;
     }
-    public function getRelativePath() : string
+    public function getDevice() : string
     {
-        return $this->relativePath;
+        return $this->device;
     }
-    public function getYoonFileMerkleRoot() : string
+    public function getCountryCode() : string
     {
-        return $this->yoonFileMerkleRoot;
+        return $this->countryCode;
     }
-    public function getFileType() : string
+    public function getLongitude() : string
     {
-        return $this->fileType;
+        return $this->longitude;
+    }
+    public function getLatitude() : string
+    {
+        return $this->latitude;
     }
 }
 

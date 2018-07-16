@@ -2,16 +2,17 @@
 
 namespace Yoon\YoonMvp\Domain\Aggregate;
 
-use Yoon\YoonMvp\Domain\State\FileMetaData as FileMetaDataState;
+use Yoon\YoonMvp\Domain\Event\FileChanged;
+use Yoon\YoonMvp\Domain\State\UserMetaData as UserMetaDataState;
 use Yoon\YoonMvp\Process;
 use Yoon\YoonMvp\Event;
 use Ramsey\Uuid\Uuid;
 
-class FileMetaData extends Process
+class UserMetaData extends Process
 {
     private $fileState;
 
-    function __construct(FileMetaDataState $fileState)
+    function __construct(UserMetaDataState $fileState)
     {
         parent::__construct($fileState);
     }
