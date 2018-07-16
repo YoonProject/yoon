@@ -40,7 +40,6 @@ class ComposerStaticInitef3d5291e721141febf72470574a0ac9
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Console\\' => 26,
-            'Swagger\\Client\\' => 15,
         ),
         'P' => 
         array (
@@ -63,6 +62,7 @@ class ComposerStaticInitef3d5291e721141febf72470574a0ac9
         array (
             'Composer\\XdebugHandler\\' => 23,
             'Composer\\Semver\\' => 16,
+            'Chainpoint\\Client\\' => 18,
         ),
     );
 
@@ -125,11 +125,6 @@ class ComposerStaticInitef3d5291e721141febf72470574a0ac9
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Swagger\\Client\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/lib',
-            1 => __DIR__ . '/../..' . '/test',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -169,6 +164,11 @@ class ComposerStaticInitef3d5291e721141febf72470574a0ac9
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
+        'Chainpoint\\Client\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib',
+            1 => __DIR__ . '/../..' . '/test',
         ),
     );
 
