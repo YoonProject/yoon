@@ -2,6 +2,8 @@
 YoonMVP/vendor
 YoonMVP/chainpoint-api/SwaggerClient-php/vendor/*
 YoonMVP/chainpoint-api/SwaggerClient-php/vendor
+YoonMVP/public/SwaggerServer/vendor/
+YoonMVP/public/SwaggerServer/vendor/*
 YoonMVP/vendor/*
 YoonMVP/stellar-api/*
 # public
