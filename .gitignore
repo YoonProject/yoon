@@ -1,6 +1,8 @@
 # Packages
-*/vendor
-*/vendor/*
+YoonMVP/vendor
+YoonMVP/chainpoint-api/SwaggerClient-php/vendor/*
+YoonMVP/chainpoint-api/SwaggerClient-php/vendor
+YoonMVP/vendor/*
 YoonMVP/stellar-api/*
 # public
 YoonMVP/public/config_neu_TEST.inc.php
