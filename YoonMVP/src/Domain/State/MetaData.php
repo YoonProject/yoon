@@ -10,6 +10,8 @@ abstract class MetaData implements State
     public $id;
     public $metaDataId;
     public $createDate;
+    public $updateDate;
+    public $deleteDate;
     public $description;
     public $name;
     public $type;
@@ -17,10 +19,12 @@ abstract class MetaData implements State
     function __construct(
         Uuid $id, 
         Uuid $metaDataId, 
-        \DateTime $createDate, 
         string $description, 
         string $name, 
-        string $type)
+        string $type,
+        \DateTime $createDate = null, 
+        \DateTime $updateDate = null,
+        \DateTime $deleteDate = null)
     {
         $this->id = $id;
         $this->metaDataId = $metaDataId;
@@ -39,6 +43,14 @@ abstract class MetaData implements State
         return $this->fileName;
     }
     public function getCreatedDate() : \DateTime
+    {
+        return $this->createdDate;
+    }
+    public function getUpdateDate() : \DateTime
+    {
+        return $this->createdDate;
+    }
+    public function getDeleteDate() : \DateTime
     {
         return $this->createdDate;
     }

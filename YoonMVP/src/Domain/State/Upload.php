@@ -10,9 +10,9 @@ class Upload implements State
     public $id;
     public $createDate;
     public $uploadFinished;
-    public $fileId;
-    public $userId;
-
+    public $fileState;
+    public $userState;
+    
     function __construct(
         Uuid $id, 
         \DateTime $createDate, 

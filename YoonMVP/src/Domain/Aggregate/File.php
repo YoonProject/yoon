@@ -10,8 +10,6 @@ use Ramsey\Uuid\Uuid;
 
 class File extends Process
 {
-    private $fileState;
-
     function __construct(FileState $fileState)
     {
         parent::__construct($fileState);
@@ -29,6 +27,17 @@ class File extends Process
         }
     }
 
+    /**
+     * Applies the new state with the given event.
+     * @return void
+     */
+    public function getProcessState():string
+    {
+        $createDate = $this->getState()->getFileMetaData()->getCreateDate();
+        $updateDate = $this->getState()->getFileMetaData()->getUpdateDate();
+        $deleteDate = $this->getState()->getFileMetaData()->getDeleteDate();
+        
+    }
 
 }
 

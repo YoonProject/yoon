@@ -12,7 +12,7 @@ use Yoon\YoonMvp\Domain\State\Upload as UploadState;
 use Yoon\YoonMvp\Domain\Aggregate\File as FileAggregate;
 use Yoon\YoonMvp\Domain\Aggregate\ErrorLog as ErrorLogAggregate;
 use Yoon\YoonMvp\Domain\Aggregate\FileMetaData as FileMetaDataAggregate;
-use Yoon\YoonMvp\Domain\Aggregate\User as UserAggregate;
+use Yoon\YoonMvp\Domain\Aggregate\UserMetaData as UserMetaDataAggregate;
 use Yoon\YoonMvp\Domain\Aggregate\Upload as UploadAggregate;
 
 use AutoMapperPlus\Configuration\AutoMapperConfig;
@@ -35,10 +35,6 @@ class MapperConfiguration extends AutoMapperConfig {
         ->beConstructedUsing(function (FileState $source): FileAggregate {
             return new FileAggregate($source);
         });
-        $this->registerMapping(UserState::class, UserAggregate::class)
-        ->beConstructedUsing(function (UserState $source): UserAggregate {
-            return new UserAggregate($source);
-        });
         $this->registerMapping(ErrorLogState::class, ErrorLogAggregate::class)
         ->beConstructedUsing(function (ErrorLogState $source): ErrorLogAggregate {
             return new ErrorLogAggregate($source);
@@ -47,12 +43,14 @@ class MapperConfiguration extends AutoMapperConfig {
         ->beConstructedUsing(function (FileMetaDataState $source): FileMetaDataAggregate {
             return new FileMetaDataAggregate($source);
         });
-        $this->registerMapping(FileMetaDataState::class, FileMetaDataAggregate::class)
-        ->beConstructedUsing(function (FileMetaDataState $source): FileMetaDataAggregate {
-            return new FileMetaDataAggregate($source);
+        $this->registerMapping(UserMetaDataState::class, UserMetaDataAggregate::class)
+        ->beConstructedUsing(function (UserMetaDataState $source): UserMetaDataAggregate {
+            return new UserMetaDataAggregate($source);
         });
-
-        //TODO: reverse map (special properties,abstraction etc)
+        $this->registerMapping(UploadState::class, UploadAggregate::class)
+        ->beConstructedUsing(function (UploadState $source): UploadAggregate {
+            return new UploadAggregate($source, array(new FileAggregate(), new FileMetaDataAggregate(), new UserMetaDataAggregate()));
+        });
     }
 }
 

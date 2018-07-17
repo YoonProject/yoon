@@ -9,7 +9,7 @@ use Yoon\YoonMvp\Handler;
 use Yoon\YoonMvp\Message;
 use Yoon\YoonMvp\MessageBus;
 use Yoon\YoonMvp\ProcessManager;
-use Yoon\YoonMvp\ChainRepository;
+use Yoon\YoonMvp\Command\Repository;
 use Yoon\YoonMvp\ErrorLog\ErrorLogException;
 use Yoon\YoonMvp\ErrorLog\ErrorLogType;
 use Ramsey\Uuid\Uuid;
@@ -29,8 +29,7 @@ class MakeUploadCommandHandler implements Handler
     {
         $this->$messageBus = $messageBus;
         $messageBus->register($this);
-        $this->repositoryPipe = $repositoryPipe;
-        $this->processManager = $processManager;
+        $this->repository = $repository;
     }
 
     /**
@@ -61,10 +60,8 @@ class MakeUploadCommandHandler implements Handler
     {
         $upload = $this->findAggregate($command);
         $event = new UploadAttemptCreated($command->getId(), $command->getUserId(), 
-        $command->getRelativePath(), $command->getFileName());
-        return $upload->apply($event)->then(function () use ($event){
-            return $event;
-        });
+            $command->getRelativePath(), $command->getFileName());
+        return $upload->apply($event);
     }
 
     private function findAggregate(MakeUpload $command) : Upload
