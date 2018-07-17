@@ -18,8 +18,6 @@ interface Entity
      * @return string
      */
     public function getHashSignedById(): string;
-
-
     /**
      * Gets the entity hash signed by the id.
      * @return string

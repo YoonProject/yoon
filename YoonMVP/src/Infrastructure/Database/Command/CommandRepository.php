@@ -1,42 +1,54 @@
 <?php 
 
-namespace Yoon\YoonMvp\Infrastructure\Query;
+namespace Yoon\YoonMvp\Infrastructure\Command;
 
 use Yoon\YoonMvp\Query\Repository;
-use Yoon\YoonMvp\Entity;
+use Yoon\YoonMvp\AggregateRoot;
 use Yoon\YoonMvp\Configuration;
 use Yoon\YoonMvp\Infrastructure\Command\MySqlRepository;
 use ByJG\MicroOrm\Mapper;
 use ByJG\AnyDataset\Factory;
 use Ramsey\Uuid\Uuid;
 use Psr\Container\ContainerInterface;
+use AutoMapperPlus\MapperInterface;
 
 class CommandRepository extends MySqlRepository {
 
+    private $mapper;
+
     //same here
-    function __construct(ContainerInterface $containerInterface, Configuration $configuration) {
-        $dataset = new ByJG\AnyDataset\Factory($configuration->getDatabaseConnectionString('read'));
+    function __construct(ContainerInterface $containerInterface) 
+    {
+        $configuration = $c->get(Configuration::class);
+        $dataset = new \ByJG\AnyDataset\Factory($configuration->getDatabaseConnectionString('read'));
         parent::__construct($containerInterface, $dataset);
+        $this->mapper = $c->get(MapperInterface::class.AggregateRoot::class);
     }
 
-    public function find($className, Uuid $uuid, $expectedVersion = null) : Entity
+    public function find($className, Uuid $uuid, $expectedVersion = null) : AggregateRoot
     {
-        $entity = parent::$containerInterface->get($className);
         $state = $this->getUnderlyingRepository($className)->get($uuid->getInteger());
-        return $this->mapEntity($entity, $state);
+        return $this->mapEntity($this->mapper, $state);
     }
 
     
-    public abstract function save(AggregateRoot $aggregate)
+    public function save(AggregateRoot $aggregate) : void
     {
-        
+        try 
+        {
+            $this->getUnderlyingRepository($className)-save($aggregate->getState());
+        }
+        catch(\Excpetions $e)
+        {
+            //TODO error log
+        }
     }
 
     //replace with automapping third component
 
-    private function mapEntity(Entity $entity, State $state) : Entity
+    private function mapAggregate(MapperInterface $mapper, $className, State $state) : AggregateRoot
     {
-        return $entity->constructFromState($state);
+        return $mapper->map($state, $className);
     }
 }
 

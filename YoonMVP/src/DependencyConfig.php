@@ -19,8 +19,9 @@ use AutoMapperPlus\Configuration\AutoMapperConfig;
 
 return [
     MessageBus::class => \DI\autowire(InternalMessageBus::class),
-    
-    \Yoon\YoonMvp\Command\Repository::class => \DI\autowire(Yoon\YoonMvp\Infrastructure\Command\CommandRepository::class),
+    \Yoon\YoonMvp\Command\Repository::class =>  function (ContainerInterface $c) {
+        return new \Yoon\YoonMvp\Infrastructure\Command\CommandRepository($c);
+    },
     'repositories' => function (ContainerInterface $c) {
         return array($c->get(\Yoon\YoonMvp\Command\Repository::class));
     },
@@ -38,7 +39,10 @@ return [
     },
     Configuration::class => ConfigExtractor::class,
     MapperInterface::class.AggregateRoot::class  => function (ContainerInterface $c) {
-        return new AutoMapper($c->get());
+        return new AutoMapper($c->get(AutoMapperConfig::class.AggregateRoot::class));
+    },
+    MapperInterface::class.EntityRoot::class  => function (ContainerInterface $c) {
+        return new AutoMapper($c->get(AutoMapperConfig::class.EntityRoot::class));
     }
 ];
 
